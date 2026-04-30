@@ -33,10 +33,13 @@
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
     }
-    /* Force light mode — prevent browser dark mode from overriding */
+    /* Force light mode — prevent browser dark mode from overriding light sections */
     @media (prefers-color-scheme: dark) {
       body { background: #F5F4EF !important; color: #2C2C2A !important; }
-      section, nav, footer { background-color: revert !important; }
+      .hero, .how, .cost, .serve, .env-impact { background-color: #F5F4EF !important; }
+      .how { background-color: #EDE9DE !important; }
+      .serve { background-color: #EDE9DE !important; }
+      nav { background: rgba(245,244,239,0.96) !important; }
     }
 
     /* ── NAV ── */
@@ -282,28 +285,28 @@
 
     /* ── IMPACT NUMBERS ── */
     .impact {
-      background: var(--deep); color: #fff;
+      background: #1E5C0A !important; color: #fff;
     }
-    .impact .section-title { color: #fff; }
-    .impact .section-label { color: var(--leaf); }
-    .impact .section-sub { color: #d4e8c2; }
+    .impact .section-title { color: #ffffff !important; }
+    .impact .section-label { color: #97C459 !important; }
+    .impact .section-sub { color: #d4e8c2 !important; }
     .impact-grid {
       display: grid; grid-template-columns: repeat(4,1fr);
       gap: 1px; margin-top: 64px;
-      background: rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden;
+      background: rgba(255,255,255,0.15); border-radius: 20px; overflow: hidden;
     }
     .impact-cell {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.06);
       padding: 48px 32px; text-align: center;
       transition: background 0.2s;
     }
-    .impact-cell:hover { background: rgba(255,255,255,0.08); }
+    .impact-cell:hover { background: rgba(255,255,255,0.12); }
     .impact-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 700; color: var(--leaf);
+      font-size: 3rem; font-weight: 700; color: #97C459 !important;
       margin-bottom: 8px;
     }
-    .impact-label { font-size: 0.9rem; color: #c8e0b0; }
+    .impact-label { font-size: 0.9rem; color: #c8e0b0 !important; }
 
     /* ── COST TRANSPARENCY ── */
     .cost { background: var(--cream); }
@@ -396,7 +399,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--charcoal); color: #c8c7c2;
+      background: #2C2C2A !important; color: #d4d3ce;
       padding: 60px 80px 36px;
     }
     .footer-top {
@@ -405,23 +408,23 @@
       flex-wrap: wrap;
     }
     .footer-brand .logo { font-size: 1.4rem; margin-bottom: 12px; display: block; }
-    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; color: #c8c7c2; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; color: #d4d3ce; }
     .footer-links h4 {
-      color: #fff; font-size: 0.82rem; letter-spacing: 1.5px;
+      color: #ffffff; font-size: 0.82rem; letter-spacing: 1.5px;
       text-transform: uppercase; margin-bottom: 16px;
     }
     .footer-links ul { list-style: none; }
     .footer-links li { margin-bottom: 10px; }
     .footer-links a {
-      color: #b8b7b2; text-decoration: none;
+      color: #c8c7c2; text-decoration: none;
       font-size: 0.9rem; transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--leaf); }
+    .footer-links a:hover { color: #97C459; }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.15);
+      border-top: 1px solid rgba(255,255,255,0.2);
       padding-top: 28px;
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.82rem; color: #b0afa9; flex-wrap: wrap; gap: 12px;
+      font-size: 0.82rem; color: #c0bfb9; flex-wrap: wrap; gap: 12px;
     }
 
     /* ── SCROLL REVEAL ── */
@@ -832,10 +835,10 @@
   <h2>Ready to Plant Your First Tree?</h2>
   <p>₹1,000 sponsors one geo-tagged tree — maintained and tracked for 5 full years.</p>
   <div class="cta-actions">
-    <a href="mailto:koodal.sandeep@gmail.com?subject=Plant a Tree — OmyEarth" class="btn-white">
+    <a href="mailto:contact@omyearth.org?subject=Plant a Tree — OmyEarth" class="btn-white">
       Sponsor a Tree
     </a>
-    <a href="mailto:koodal.sandeep@gmail.com?subject=CSR Partnership Enquiry — OmyEarth" class="btn-ghost">
+    <a href="mailto:contact@omyearth.org?subject=CSR Partnership Enquiry — OmyEarth" class="btn-ghost">
       Corporate Partnership
     </a>
   </div>
@@ -862,7 +865,7 @@
     <div class="footer-links">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:koodal.sandeep@gmail.com">koodal.sandeep@gmail.com</a></li>
+        <li><a href="mailto:contact@omyearth.org">contact@omyearth.org</a></li>
         <li><a href="#">omyearth.org</a></li>
         <li><a href="#">Kerala, India</a></li>
       </ul>
