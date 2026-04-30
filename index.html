@@ -6,6 +6,22 @@
   <title>OmyEarth — My Earth. Our Responsibility.</title>
   <meta name="description" content="OmyEarth converts donor and corporate funding into measurable carbon reduction — one geo-tagged, maintained tree at a time." />
   <meta name="color-scheme" content="light" />
+  <!-- SEO: Canonical -->
+  <link rel="canonical" href="https://omyearth.org" />
+  <!-- SEO: Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://omyearth.org" />
+  <meta property="og:title"       content="OmyEarth — My Earth. Our Responsibility." />
+  <meta property="og:description" content="OmyEarth plants, maintains and geo-tracks trees for 5 years — turning donor and corporate funding into verified, measurable carbon reduction." />
+  <meta property="og:image"       content="https://omyearth.org/og-image.png" />
+  <!-- SEO: Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="OmyEarth — My Earth. Our Responsibility." />
+  <meta name="twitter:description" content="OmyEarth plants, maintains and geo-tracks trees for 5 years — turning donor and corporate funding into verified, measurable carbon reduction." />
+  <meta name="twitter:image"       content="https://omyearth.org/og-image.png" />
+  <!-- Favicon: inline SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%233B6D11'/><ellipse cx='16' cy='11' rx='8' ry='9' fill='%2397C459'/><rect x='14.5' y='18' width='3' height='8' rx='1' fill='%236B3D0A'/></svg>" />
+  <!-- Fonts with display=swap to prevent invisible text -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -42,15 +58,57 @@
       nav { background: rgba(245,244,239,0.96) !important; }
     }
 
+    /* ── BRAND NAME INLINE STYLING ── */
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-style: normal; display: inline;
+    }
+    .brand .b-omy   { color: #3B6D11; font-weight: 700; }
+    .brand .b-earth { color: #854F0B; font-weight: 400; }
+
+    /* On dark backgrounds — add a subtle pill so colours stay visible */
+    .brand--dark {
+      background: rgba(245,244,239,0.12);
+      border-radius: 4px;
+      padding: 1px 5px 2px;
+    }
+    .brand--dark .b-omy   { color: #b5d97a; }
+    .brand--dark .b-earth { color: #f0a95a; }
+
+    /* ── FOCUS STYLES (keyboard nav) ── */
+    :focus-visible {
+      outline: 3px solid #3B6D11;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 48px;
       background: rgba(245,244,239,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(59,109,17,0.12);
+      /* backdrop-filter fallback for unsupported browsers */
+      background: #F5F4EF;
     }
+    @supports (backdrop-filter: blur(1px)) {
+      nav {
+        background: rgba(245,244,239,0.96);
+        backdrop-filter: blur(12px);
+      }
+    }
+    nav { border-bottom: 1px solid rgba(59,109,17,0.12); }
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem; letter-spacing: -0.5px;
@@ -71,6 +129,44 @@
       transition: background 0.2s !important;
     }
     .nav-cta:hover { background: var(--deep) !important; }
+
+    /* Hamburger button */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 28px; height: 20px; cursor: pointer;
+      background: none; border: none; padding: 0;
+    }
+    .nav-hamburger span {
+      display: block; height: 2px; width: 100%;
+      background: var(--charcoal); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+    /* Mobile nav drawer */
+    .nav-mobile {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: #F5F4EF; border-bottom: 2px solid rgba(59,109,17,0.15);
+      padding: 24px 32px 32px; flex-direction: column; gap: 0; z-index: 99;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      text-decoration: none; font-size: 1.05rem; font-weight: 500;
+      color: var(--charcoal); padding: 14px 0;
+      border-bottom: 1px solid rgba(59,109,17,0.08);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:last-child { border-bottom: none; margin-top: 16px; }
+    .nav-mobile a:hover { color: var(--green); }
+    .nav-mobile .nav-cta-mobile {
+      background: var(--green); color: #fff !important;
+      padding: 14px 24px; border-radius: 100px;
+      text-align: center; font-weight: 500; border-bottom: none !important;
+    }
+    .nav-mobile .nav-cta-mobile:hover { background: var(--deep); }
 
     /* ── HERO ── */
     .hero {
@@ -201,7 +297,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem; color: var(--green); font-weight: 700;
     }
-    .stat-bubble .lbl { font-size: 0.72rem; color: #888; margin-top: 2px; }
+    .stat-bubble .lbl { font-size: 0.72rem; color: #4a4a48; margin-top: 2px; }
     .sb1 { top: 30px; left: -30px; animation-delay: -1s; }
     .sb2 { bottom: 120px; right: -20px; animation-delay: -2.5s; }
     .sb3 { bottom: 40px; left: -20px; animation-delay: -4s; }
@@ -334,7 +430,7 @@
     }
     .cost-table tfoot td:not(:first-child) { text-align: center; }
     .cost-note {
-      margin-top: 20px; font-size: 0.88rem; color: #888; font-style: italic;
+      margin-top: 20px; font-size: 0.88rem; color: #4a4a48; font-style: italic;
     }
 
     /* ── WHO WE SERVE ── */
@@ -378,7 +474,7 @@
       color: #fff; margin-bottom: 16px; position: relative;
     }
     .cta-band p {
-      color: rgba(255,255,255,0.75); font-size: 1.1rem;
+      color: rgba(255,255,255,0.92); font-size: 1.1rem;
       margin-bottom: 40px; position: relative;
     }
     .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
@@ -488,10 +584,112 @@
       background: #f0f4ec; color: var(--green);
     }
 
+    /* ── MAINTENANCE PROGRAM ── */
+    .maintenance { background: #1a1a18; color: #fff; }
+    .maintenance .section-label { color: #97C459 !important; }
+    .maintenance .section-title { color: #fff; }
+    .maintenance .section-sub   { color: #d4e8c2; max-width: 620px; }
+
+    /* Year timeline */
+    .timeline {
+      position: relative; margin-top: 72px;
+      padding-left: 48px;
+    }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 15px; top: 8px; bottom: 8px; width: 3px;
+      background: linear-gradient(to bottom, #97C459, #3B6D11, #0F6E56);
+      border-radius: 4px;
+    }
+    .tl-item {
+      position: relative; margin-bottom: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+      align-items: start;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -40px; top: 6px;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 3px solid #1a1a18;
+      background: #97C459;
+      box-shadow: 0 0 0 3px rgba(151,196,89,0.3);
+    }
+    .tl-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: #97C459; margin-bottom: 8px;
+    }
+    .tl-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: #fff; margin-bottom: 10px; line-height: 1.3;
+    }
+    .tl-body { font-size: 0.95rem; line-height: 1.8; color: #b8d4a8; }
+    .tl-activities {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(151,196,89,0.2);
+      border-radius: 16px; padding: 24px 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .tl-act {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .tl-act-icon {
+      font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;
+    }
+    .tl-act-text { font-size: 0.88rem; color: #c8e0b0; line-height: 1.5; }
+    .tl-act-text strong { display: block; color: #fff; font-weight: 500; font-size: 0.9rem; }
+
+    /* Workers strip */
+    .workers-strip {
+      margin-top: 80px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden;
+    }
+    .worker-cell {
+      background: rgba(255,255,255,0.03);
+      padding: 36px 28px; text-align: center;
+      transition: background 0.2s;
+    }
+    .worker-cell:hover { background: rgba(255,255,255,0.07); }
+    .worker-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .worker-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: #fff; margin-bottom: 6px;
+    }
+    .worker-desc { font-size: 0.83rem; color: #9abf88; line-height: 1.6; }
+
+    /* Inspection cycle box */
+    .inspection-box {
+      margin-top: 64px;
+      background: linear-gradient(135deg, rgba(59,109,17,0.25), rgba(15,110,86,0.2));
+      border: 1px solid rgba(151,196,89,0.25);
+      border-radius: 20px; padding: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .insp-left h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #fff; margin-bottom: 16px;
+    }
+    .insp-left p { font-size: 0.95rem; color: #b8d4a8; line-height: 1.8; }
+    .insp-cycle {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .insp-item {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 18px 20px;
+      border-left: 3px solid #97C459;
+    }
+    .insp-item .insp-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; color: #97C459;
+    }
+    .insp-item .insp-label { font-size: 0.8rem; color: #9abf88; margin-top: 2px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       nav ul { display: none; }
+      .nav-hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
       .hero-left { padding: 40px 0; }
       .hero-right { height: 360px; }
@@ -499,28 +697,56 @@
       section { padding: 72px 24px; }
       .how-grid, .serve-grid, .env-grid { grid-template-columns: 1fr; }
       .impact-grid { grid-template-columns: 1fr 1fr; }
-      .cost-table { font-size: 0.82rem; }
+      /* Fix 2: Cost table mobile overflow */
+      .cost-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+      .cost-table { font-size: 0.82rem; min-width: 580px; }
       .cta-band { padding: 72px 24px; }
       footer { padding: 48px 24px 28px; }
       .footer-top { flex-direction: column; }
+      /* Maintenance section responsive */
+      .tl-item { grid-template-columns: 1fr; gap: 20px; }
+      .tl-activities { grid-template-columns: 1fr; }
+      .workers-strip { grid-template-columns: 1fr 1fr; }
+      .inspection-box { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+      .timeline { padding-left: 32px; }
+      .tl-dot { left: -26px; }
     }
   </style>
 </head>
 <body>
 
+<!-- Skip Navigation (Fix 15 - accessibility) -->
+<a href="#main-content" style="position:absolute;left:-9999px;top:4px;z-index:999;padding:8px 16px;background:#3B6D11;color:#fff;border-radius:4px;font-size:0.9rem;text-decoration:none" onfocus="this.style.left='4px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
 <!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <div class="logo">
     <span class="omy">Omy</span><span class="earth">Earth</span><span class="org"> .org</span>
   </div>
   <ul>
     <li><a href="#how">How It Works</a></li>
+    <li><a href="#maintenance">Care Program</a></li>
     <li><a href="#environment">Impact</a></li>
     <li><a href="#cost">Transparency</a></li>
     <li><a href="#serve">Who We Serve</a></li>
     <li><a href="#contact" class="nav-cta">Plant a Tree</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+  <a href="#how">How It Works</a>
+  <a href="#maintenance">Care Program</a>
+  <a href="#environment">Impact</a>
+  <a href="#cost">Transparency</a>
+  <a href="#serve">Who We Serve</a>
+  <a href="#contact" class="nav-cta-mobile">Plant a Tree</a>
+</div>
+
+<main id="main-content">
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -531,7 +757,7 @@
     <h1>Plant.<br><em>Maintain.</em><br>Measure.</h1>
     <p class="hero-tagline">My Earth. Our Responsibility.</p>
     <p class="hero-body">
-      OmyEarth converts donor and corporate funding into measurable, geo-tagged carbon reduction —
+      <span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> converts donor and corporate funding into measurable, geo-tagged carbon reduction —
       one tree at a time. We don't just plant. We maintain and track every tree for 5 years.
     </p>
     <div class="hero-actions">
@@ -616,6 +842,121 @@
   </div>
 </section>
 
+<!-- MAINTENANCE PROGRAM -->
+<section class="maintenance" id="maintenance">
+  <div class="section-label">Our Core Differentiator</div>
+  <h2 class="section-title reveal">The 5-Year Plant Care Program</h2>
+  <p class="section-sub reveal">Planting a tree takes a day. Growing a tree takes years. <span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> commits to every tree for 5 full years — with a structured, funded, and monitored care cycle from Day 1.</p>
+
+  <!-- Year-by-Year Timeline -->
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-left">
+        <div class="tl-year">Year 1 — Foundation</div>
+        <h3 class="tl-title">Establish, Protect & Root</h3>
+        <p class="tl-body">The most critical year. The sapling is freshly transplanted and highly vulnerable. Intensive watering, organic manuring, and physical protection are applied. Each tree is geo-tagged with GPS coordinates and baseline girth is recorded. Survival checks happen every 6 weeks.</p>
+      </div>
+      <div class="tl-activities">
+        <div class="tl-act"><span class="tl-act-icon">📍</span><div class="tl-act-text"><strong>GPS Geo-Tagging</strong>Exact coordinates logged on planting day</div></div>
+        <div class="tl-act"><span class="tl-act-icon">💧</span><div class="tl-act-text"><strong>Intensive Watering</strong>Regular schedule via Kudumbasree workers</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🌿</span><div class="tl-act-text"><strong>Organic Manuring</strong>250g natural fertiliser every 6 months</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🛡️</span><div class="tl-act-text"><strong>Physical Protection</strong>Tree guards installed on barren/exposed land</div></div>
+        <div class="tl-act"><span class="tl-act-icon">📏</span><div class="tl-act-text"><strong>Baseline Girth</strong>First measurement recorded for growth tracking</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🔁</span><div class="tl-act-text"><strong>Replacement Protocol</strong>Failed saplings replaced within 30 days</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:#3B6D11;"></div>
+      <div class="tl-left">
+        <div class="tl-year">Year 2 & 3 — Growth Phase</div>
+        <h3 class="tl-title">Strengthen & Establish Root Systems</h3>
+        <p class="tl-body">Root systems deepen and canopy starts forming. Watering frequency is reduced as the tree becomes self-sustaining, but manuring continues every 6 months. Girth is measured and updated in the donor dashboard. Field inspectors visit each site and log health data.</p>
+      </div>
+      <div class="tl-activities">
+        <div class="tl-act"><span class="tl-act-icon">📐</span><div class="tl-act-text"><strong>Bi-Annual Girth Check</strong>Growth measured and logged every 6 months</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🌱</span><div class="tl-act-text"><strong>Reduced Watering</strong>Adjusted to seasonal needs as roots deepen</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🧪</span><div class="tl-act-text"><strong>Continued Manuring</strong>Organic inputs maintained on schedule</div></div>
+        <div class="tl-act"><span class="tl-act-icon">📊</span><div class="tl-act-text"><strong>Donor Dashboard Update</strong>Photos, girth data & health status published</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🔍</span><div class="tl-act-text"><strong>Field Inspector Visit</strong>Trained inspector documents on-site health</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🌦️</span><div class="tl-act-text"><strong>Monsoon Monitoring</strong>Drainage and root flood protection in Kerala</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:#0F6E56;"></div>
+      <div class="tl-left">
+        <div class="tl-year">Year 4 & 5 — Maturity</div>
+        <h3 class="tl-title">Measure, Certify & Hand Over</h3>
+        <p class="tl-body">The tree is now largely self-sufficient. Final girth and canopy measurements are taken. Carbon offset is calculated per tree. Donors and corporate partners receive an official Impact Certificate. Where possible, trees are transitioned to community or land-owner care under a long-term protection agreement.</p>
+      </div>
+      <div class="tl-activities">
+        <div class="tl-act"><span class="tl-act-icon">🏆</span><div class="tl-act-text"><strong>Impact Certificate</strong>Official report issued to donor / CSR partner</div></div>
+        <div class="tl-act"><span class="tl-act-icon">♻️</span><div class="tl-act-text"><strong>Carbon Calculation</strong>Verified CO₂ offset measured per tree</div></div>
+        <div class="tl-act"><span class="tl-act-icon">📸</span><div class="tl-act-text"><strong>Before & After Report</strong>Visual growth documentation from Day 1</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🤝</span><div class="tl-act-text"><strong>Community Handover</strong>Tree registered under long-term protection pact</div></div>
+        <div class="tl-act"><span class="tl-act-icon">📡</span><div class="tl-act-text"><strong>Final GPS Audit</strong>Location, health and canopy size verified</div></div>
+        <div class="tl-act"><span class="tl-act-icon">🔄</span><div class="tl-act-text"><strong>Renewal Option</strong>Sponsors can extend care for another 5 years</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Who Executes -->
+  <div class="workers-strip reveal">
+    <div class="worker-cell">
+      <span class="worker-icon">👩‍🌾</span>
+      <div class="worker-title">Kudumbasree Workers</div>
+      <div class="worker-desc">Trained local women from Kerala's Kudumbasree network handle daily watering and manuring — providing community employment while ensuring consistent care.</div>
+    </div>
+    <div class="worker-cell">
+      <span class="worker-icon">🔍</span>
+      <div class="worker-title">Field Inspectors</div>
+      <div class="worker-desc">Dedicated inspectors visit each plantation site every 6 months. They measure girth, assess health, photograph trees, and upload data to our tracking system.</div>
+    </div>
+    <div class="worker-cell">
+      <span class="worker-icon">🤝</span>
+      <div class="worker-title">Volunteer Network</div>
+      <div class="worker-desc">Registered volunteers monitor nearby sites, report issues, and recommend new planting spots — keeping the community connected to the mission.</div>
+    </div>
+    <div class="worker-cell">
+      <span class="worker-icon">🖥️</span>
+      <div class="worker-title">Admin & Data Team</div>
+      <div class="worker-desc">A 4-person operations team manages data entry, donor reporting, coordination with field staff, and compliance with all inspection schedules.</div>
+    </div>
+  </div>
+
+  <!-- Inspection Cycle -->
+  <div class="inspection-box reveal">
+    <div class="insp-left">
+      <h3>The Inspection & Data Cycle</h3>
+      <p>Every tree in the <span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> network is inspected on a fixed bi-annual schedule. Girth circumference is measured, health is documented, and data is uploaded to the donor portal within 7 days of each visit. No tree goes unaccounted for — ever.</p>
+      <p style="margin-top:16px; font-size:0.9rem; color:#7ab860;">Cost per tree per year: <strong style="color:#97C459; font-size:1.05rem;">₹1,500</strong> — covering all care, inspection, and reporting activities.</p>
+    </div>
+    <div class="insp-cycle">
+      <div class="insp-item">
+        <div class="insp-num">2×</div>
+        <div class="insp-label">Field inspections per year per tree</div>
+      </div>
+      <div class="insp-item">
+        <div class="insp-num">6 Mo</div>
+        <div class="insp-label">Maximum gap between any two inspections</div>
+      </div>
+      <div class="insp-item">
+        <div class="insp-num">10</div>
+        <div class="insp-label">Data points recorded per inspection visit</div>
+      </div>
+      <div class="insp-item">
+        <div class="insp-num">7 Days</div>
+        <div class="insp-label">Maximum time to publish data to donor portal</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
 <!-- IMPACT NUMBERS -->
 <section class="impact" id="impact">
   <div class="section-label">Why It Matters</div>
@@ -629,7 +970,7 @@
     </div>
     <div class="impact-cell">
       <div class="impact-num">5 Yrs</div>
-      <div class="impact-label">OmyEarth maintenance commitment per tree</div>
+      <div class="impact-label"><span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> maintenance commitment per tree</div>
     </div>
     <div class="impact-cell">
       <div class="impact-num">₹1,500</div>
@@ -709,7 +1050,7 @@
         <h3>Biodiversity & Ecosystems</h3>
       </div>
       <div class="env-card-body">
-        <p>Native trees are not just trees — they are entire ecosystems. Birds, insects, fungi, and microorganisms all depend on them. OmyEarth prioritises native species that restore indigenous food webs and bring back wildlife that has disappeared from degraded land.</p>
+        <p>Native trees are not just trees — they are entire ecosystems. Birds, insects, fungi, and microorganisms all depend on them. <span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> prioritises native species that restore indigenous food webs and bring back wildlife that has disappeared from degraded land.</p>
         <div class="env-tags">
           <span class="env-tag">Native Species</span>
           <span class="env-tag">Wildlife Habitat</span>
@@ -761,6 +1102,7 @@
   <h2 class="section-title reveal">Where Your Money Goes</h2>
   <p class="section-sub reveal">Every rupee tracked. Here is the complete 5-year lifecycle cost per tree — updated to 2026 rates.</p>
 
+  <div class="cost-table-wrap">
   <table class="cost-table reveal">
     <thead>
       <tr>
@@ -802,6 +1144,7 @@
       </tr>
     </tfoot>
   </table>
+  </div>
   <p class="cost-note">Individual sponsorship: ₹1,000/tree (subsidised by corporate CSR partnerships). Corporate bulk rates available on request.</p>
 </section>
 
@@ -809,7 +1152,7 @@
 <section class="serve" id="serve">
   <div class="section-label">Our Stakeholders</div>
   <h2 class="section-title reveal">Who We Work With</h2>
-  <p class="section-sub reveal">OmyEarth bridges individuals, corporations, and communities — all working toward a measurable green outcome.</p>
+  <p class="section-sub reveal"><span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> bridges individuals, corporations, and communities — all working toward a measurable green outcome.</p>
 
   <div class="serve-grid">
     <div class="serve-card reveal">
@@ -866,8 +1209,8 @@
       <h4>Contact</h4>
       <ul>
         <li><a href="mailto:contact@omyearth.org">contact@omyearth.org</a></li>
-        <li><a href="#">omyearth.org</a></li>
-        <li><a href="#">Kerala, India</a></li>
+        <li><a href="https://omyearth.org">omyearth.org</a></li>
+        <li><a href="https://maps.google.com/?q=Kerala,+India" target="_blank" rel="noopener noreferrer">Kerala, India</a></li>
       </ul>
     </div>
   </div>
@@ -877,16 +1220,62 @@
   </div>
 </footer>
 
+</main>
+
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
+  // ── Fix 14: Scroll reveal with auto-disconnect ──
+  const revealEls = document.querySelectorAll('.reveal');
+  let revealed = 0;
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        setTimeout(() => {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+          revealed++;
+          if (revealed === revealEls.length) revealObserver.disconnect();
+        }, i * 80);
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── Fix 12: Pause animations when off-screen ──
+  const animatedEls = document.querySelectorAll('.tree-circle, .globe-ring, .stat-bubble, .marquee-inner');
+  const animObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      e.target.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+    });
+  }, { threshold: 0 });
+  animatedEls.forEach(el => animObserver.observe(el));
+
+  // ── Fix 1: Hamburger mobile nav toggle ──
+  const hamburger = document.querySelector('.nav-hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  // Close mobile nav when a link is clicked
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
 </script>
 
 </body>
