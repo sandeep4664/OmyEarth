@@ -1,1280 +1,874 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OmyEarth — Kerala's tech-monitored native tree plantation platform. Geo-tagged trees, 5-year maintenance, IPCC-verified carbon impact. My Earth. Our Responsibility.">
+  <meta name="keywords" content="tree plantation Kerala, carbon offset India, CSR tree planting, geo-tagged trees, DPIIT startup, sustainability">
+  <meta property="og:title" content="OmyEarth — My Earth. Our Responsibility.">
+  <meta property="og:description" content="Tech-monitored native tree plantation with 5-year maintenance and IPCC-verified carbon impact.">
+  <meta property="og:url" content="https://omyearth.org">
+  <meta name="theme-color" content="#2A5E10">
   <title>OmyEarth — My Earth. Our Responsibility.</title>
-  <meta name="description" content="OmyEarth converts donor and corporate funding into measurable carbon reduction — one geo-tagged, maintained tree at a time." />
-  <meta name="color-scheme" content="light" />
-  <!-- SEO: Canonical -->
-  <link rel="canonical" href="https://omyearth.org" />
-  <!-- SEO: Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://omyearth.org" />
-  <meta property="og:title"       content="OmyEarth — My Earth. Our Responsibility." />
-  <meta property="og:description" content="OmyEarth plants, maintains and geo-tracks trees for 5 years — turning donor and corporate funding into verified, measurable carbon reduction." />
-  <meta property="og:image"       content="https://omyearth.org/og-image.png" />
-  <!-- SEO: Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="OmyEarth — My Earth. Our Responsibility." />
-  <meta name="twitter:description" content="OmyEarth plants, maintains and geo-tracks trees for 5 years — turning donor and corporate funding into verified, measurable carbon reduction." />
-  <meta name="twitter:image"       content="https://omyearth.org/og-image.png" />
-  <!-- Favicon: inline SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%233B6D11'/><ellipse cx='16' cy='11' rx='8' ry='9' fill='%2397C459'/><rect x='14.5' y='18' width='3' height='8' rx='1' fill='%236B3D0A'/></svg>" />
-  <!-- Fonts with display=swap to prevent invisible text -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green:   #3B6D11;
-      --deep:    #1E5C0A;
-      --amber:   #854F0B;
-      --teal:    #0F6E56;
-      --leaf:    #97C459;
-      --charcoal:#2C2C2A;
-      --cream:   #F5F4EF;
-      --warm:    #EDE9DE;
-      color-scheme: light;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #F5F4EF;
-      color: var(--charcoal);
-      overflow-x: hidden;
-      -webkit-text-size-adjust: 100%;
-    }
-    /* Force light mode — prevent browser dark mode from overriding light sections */
-    @media (prefers-color-scheme: dark) {
-      body { background: #F5F4EF !important; color: #2C2C2A !important; }
-      .hero, .how, .cost, .serve, .env-impact { background-color: #F5F4EF !important; }
-      .how { background-color: #EDE9DE !important; }
-      .serve { background-color: #EDE9DE !important; }
-      nav { background: rgba(245,244,239,0.96) !important; }
-    }
-
-    /* ── BRAND NAME INLINE STYLING ── */
-    .brand {
-      font-family: 'Playfair Display', serif;
-      font-style: normal; display: inline;
-    }
-    .brand .b-omy   { color: #3B6D11; font-weight: 700; }
-    .brand .b-earth { color: #854F0B; font-weight: 400; }
-
-    /* On dark backgrounds — add a subtle pill so colours stay visible */
-    .brand--dark {
-      background: rgba(245,244,239,0.12);
-      border-radius: 4px;
-      padding: 1px 5px 2px;
-    }
-    .brand--dark .b-omy   { color: #b5d97a; }
-    .brand--dark .b-earth { color: #f0a95a; }
-
-    /* ── FOCUS STYLES (keyboard nav) ── */
-    :focus-visible {
-      outline: 3px solid #3B6D11;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* ── REDUCED MOTION ── */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1 !important; transform: none !important; }
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(245,244,239,0.96);
-      /* backdrop-filter fallback for unsupported browsers */
-      background: #F5F4EF;
-    }
-    @supports (backdrop-filter: blur(1px)) {
-      nav {
-        background: rgba(245,244,239,0.96);
-        backdrop-filter: blur(12px);
-      }
-    }
-    nav { border-bottom: 1px solid rgba(59,109,17,0.12); }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; letter-spacing: -0.5px;
-    }
-    .logo span.omy { color: var(--green); font-weight: 700; }
-    .logo span.earth { color: var(--amber); font-weight: 400; }
-    .logo span.org { font-size: 0.75rem; color: #999; letter-spacing: 2px; vertical-align: super; }
-    nav ul { list-style: none; display: flex; gap: 36px; }
-    nav ul a {
-      text-decoration: none; font-size: 0.88rem; font-weight: 500;
-      color: var(--charcoal); letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
-    nav ul a:hover { color: var(--green); }
-    .nav-cta {
-      background: var(--green); color: #fff !important;
-      padding: 10px 24px; border-radius: 100px;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--deep) !important; }
-
-    /* Hamburger button */
-    .nav-hamburger {
-      display: none; flex-direction: column; justify-content: space-between;
-      width: 28px; height: 20px; cursor: pointer;
-      background: none; border: none; padding: 0;
-    }
-    .nav-hamburger span {
-      display: block; height: 2px; width: 100%;
-      background: var(--charcoal); border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-    /* Mobile nav drawer */
-    .nav-mobile {
-      display: none; position: fixed; top: 65px; left: 0; right: 0;
-      background: #F5F4EF; border-bottom: 2px solid rgba(59,109,17,0.15);
-      padding: 24px 32px 32px; flex-direction: column; gap: 0; z-index: 99;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-    .nav-mobile.open { display: flex; }
-    .nav-mobile a {
-      text-decoration: none; font-size: 1.05rem; font-weight: 500;
-      color: var(--charcoal); padding: 14px 0;
-      border-bottom: 1px solid rgba(59,109,17,0.08);
-      transition: color 0.2s;
-    }
-    .nav-mobile a:last-child { border-bottom: none; margin-top: 16px; }
-    .nav-mobile a:hover { color: var(--green); }
-    .nav-mobile .nav-cta-mobile {
-      background: var(--green); color: #fff !important;
-      padding: 14px 24px; border-radius: 100px;
-      text-align: center; font-weight: 500; border-bottom: none !important;
-    }
-    .nav-mobile .nav-cta-mobile:hover { background: var(--deep); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 0;
-      padding-top: 80px;
-      position: relative; overflow: hidden;
-      background: #F5F4EF;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(151,196,89,0.10) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(15,110,86,0.08) 0%, transparent 60%);
-    }
-    .hero-left {
-      position: relative; z-index: 2;
-      padding: 80px 64px 80px 80px;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 2.5px;
-      color: var(--teal); text-transform: uppercase; margin-bottom: 28px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block;
-      width: 28px; height: 2px; background: var(--teal);
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
-      line-height: 1.12; letter-spacing: -1px;
-      color: #1a1a18; margin-bottom: 12px;
-    }
-    .hero h1 em {
-      font-style: italic; color: var(--green);
-    }
-    .hero-tagline {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-style: italic;
-      color: #7a3e00; margin-bottom: 32px;
-    }
-    .hero-body {
-      font-size: 1.05rem; line-height: 1.75; color: #2a2a28;
-      max-width: 480px; margin-bottom: 48px;
-    }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--green); color: #fff;
-      padding: 15px 36px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 500; text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      display: inline-block;
-    }
-    .btn-primary:hover { background: var(--deep); transform: translateY(-2px); }
-    .btn-outline {
-      border: 2px solid var(--green); color: var(--green);
-      padding: 13px 34px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 500; text-decoration: none;
-      transition: all 0.2s; display: inline-block;
-    }
-    .btn-outline:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
-
-    .hero-right {
-      position: relative; z-index: 2;
-      height: 100vh; display: flex; align-items: center; justify-content: center;
-    }
-    /* Animated tree illustration */
-    .tree-art {
-      position: relative; width: 340px; height: 420px;
-    }
-    .tree-circle {
-      position: absolute; border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-    }
-    .tc1 {
-      width: 200px; height: 200px; top: 0; left: 70px;
-      background: radial-gradient(circle at 35% 35%, #97C459, #3B6D11);
-      animation-delay: 0s;
-    }
-    .tc2 {
-      width: 150px; height: 150px; top: 50px; left: 10px;
-      background: radial-gradient(circle at 40% 35%, #b5d97a, #4a8a18);
-      animation-delay: -1.5s; opacity: 0.85;
-    }
-    .tc3 {
-      width: 140px; height: 140px; top: 60px; left: 180px;
-      background: radial-gradient(circle at 35% 40%, #6fba22, #1E5C0A);
-      animation-delay: -3s; opacity: 0.9;
-    }
-    .tree-trunk {
-      position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
-      width: 22px; height: 140px;
-      background: linear-gradient(to bottom, #6B3D0A, #4a2a08);
-      border-radius: 4px;
-    }
-    .tree-roots {
-      position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
-      width: 100px; height: 36px;
-    }
-    .tree-roots::before, .tree-roots::after {
-      content: ''; position: absolute;
-      height: 3px; background: #6B3D0A;
-      border-radius: 2px; bottom: 0;
-    }
-    .tree-roots::before { width: 70px; left: -20px; transform: rotate(15deg); }
-    .tree-roots::after  { width: 70px; right: -20px; transform: rotate(-15deg); }
-
-    .globe-ring {
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      width: 220px; height: 220px; border-radius: 50%;
-      border: 2px dashed rgba(59,109,17,0.3);
-      animation: spin 20s linear infinite;
-    }
-    .globe-ring::before {
-      content: ''; position: absolute; inset: 20px; border-radius: 50%;
-      border: 1.5px dashed rgba(15,110,86,0.2);
-    }
-
-    .stat-bubble {
-      position: absolute;
-      background: #fff; border-radius: 16px;
-      padding: 14px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      animation: float 5s ease-in-out infinite;
-    }
-    .stat-bubble .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; color: var(--green); font-weight: 700;
-    }
-    .stat-bubble .lbl { font-size: 0.72rem; color: #4a4a48; margin-top: 2px; }
-    .sb1 { top: 30px; left: -30px; animation-delay: -1s; }
-    .sb2 { bottom: 120px; right: -20px; animation-delay: -2.5s; }
-    .sb3 { bottom: 40px; left: -20px; animation-delay: -4s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    @keyframes spin {
-      from { transform: translateX(-50%) rotate(0deg); }
-      to   { transform: translateX(-50%) rotate(360deg); }
-    }
-
-    /* ── MARQUEE STRIP ── */
-    .marquee-strip {
-      background: var(--green); padding: 14px 0;
-      overflow: hidden; white-space: nowrap;
-    }
-    .marquee-inner {
-      display: inline-flex; gap: 60px;
-      animation: marquee 18s linear infinite;
-    }
-    .marquee-inner span {
-      font-size: 0.82rem; font-weight: 500; letter-spacing: 1.5px;
-      color: rgba(255,255,255,0.85); text-transform: uppercase;
-    }
-    .marquee-inner .dot { color: var(--leaf); }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── SECTION COMMONS ── */
-    section { padding: 100px 80px; }
-    .section-label {
-      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--teal); font-weight: 500; margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1.2; color: var(--charcoal);
-      margin-bottom: 20px;
-    }
-    .section-sub {
-      font-size: 1.05rem; line-height: 1.8; color: #2a2a28;
-      max-width: 580px;
-    }
-
-    /* ── HOW IT WORKS ── */
-    .how { background: #EDE9DE; }
-    .how-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 40px; margin-top: 64px;
-    }
-    .how-card {
-      background: #fff; border-radius: 20px;
-      padding: 40px 32px; position: relative;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .how-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-    .how-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem; font-weight: 700; line-height: 1;
-      color: rgba(59,109,17,0.08); position: absolute; top: 20px; right: 28px;
-    }
-    .how-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; margin-bottom: 24px;
-    }
-    .ic1 { background: rgba(59,109,17,0.1); }
-    .ic2 { background: rgba(15,110,86,0.1); }
-    .ic3 { background: rgba(133,79,11,0.1); }
-    .how-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; margin-bottom: 12px; color: var(--charcoal);
-    }
-    .how-card p { font-size: 0.95rem; line-height: 1.75; color: #222220; }
-
-    /* ── IMPACT NUMBERS ── */
-    .impact {
-      background: #1E5C0A !important; color: #fff;
-    }
-    .impact .section-title { color: #ffffff !important; }
-    .impact .section-label { color: #97C459 !important; }
-    .impact .section-sub { color: #d4e8c2 !important; }
-    .impact-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 1px; margin-top: 64px;
-      background: rgba(255,255,255,0.15); border-radius: 20px; overflow: hidden;
-    }
-    .impact-cell {
-      background: rgba(255,255,255,0.06);
-      padding: 48px 32px; text-align: center;
-      transition: background 0.2s;
-    }
-    .impact-cell:hover { background: rgba(255,255,255,0.12); }
-    .impact-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 700; color: #97C459 !important;
-      margin-bottom: 8px;
-    }
-    .impact-label { font-size: 0.9rem; color: #c8e0b0 !important; }
-
-    /* ── COST TRANSPARENCY ── */
-    .cost { background: var(--cream); }
-    .cost-table {
-      width: 100%; border-collapse: collapse;
-      margin-top: 48px; border-radius: 16px; overflow: hidden;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
-    }
-    .cost-table thead th {
-      background: var(--green); color: #fff; padding: 18px 24px;
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px; text-align: left;
-    }
-    .cost-table thead th:not(:first-child) { text-align: center; }
-    .cost-table tbody tr { background: #fff; }
-    .cost-table tbody tr:nth-child(even) { background: #f7f9f4; }
-    .cost-table tbody tr:hover { background: #edf4e5; }
-    .cost-table td {
-      padding: 16px 24px; font-size: 0.92rem;
-      color: var(--charcoal); border-bottom: 1px solid #eee;
-    }
-    .cost-table td:not(:first-child) { text-align: center; }
-    .cost-table tfoot td {
-      background: var(--charcoal); color: #fff;
-      font-weight: 700; padding: 18px 24px; font-size: 0.95rem;
-    }
-    .cost-table tfoot td:not(:first-child) { text-align: center; }
-    .cost-note {
-      margin-top: 20px; font-size: 0.88rem; color: #4a4a48; font-style: italic;
-    }
-
-    /* ── WHO WE SERVE ── */
-    .serve { background: var(--warm); }
-    .serve-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 28px; margin-top: 56px;
-    }
-    .serve-card {
-      border-radius: 18px; padding: 36px 28px;
-      border: 1.5px solid rgba(59,109,17,0.15);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .serve-card:hover { border-color: var(--green); transform: translateY(-4px); }
-    .serve-card .tag {
-      display: inline-block; font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
-    }
-    .tag-corp { background: rgba(59,109,17,0.1); color: var(--green); }
-    .tag-ind  { background: rgba(15,110,86,0.1); color: var(--teal); }
-    .tag-gov  { background: rgba(133,79,11,0.1); color: var(--amber); }
-    .serve-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; margin-bottom: 12px;
-    }
-    .serve-card p { font-size: 0.92rem; line-height: 1.75; color: #222220; }
-
-    /* ── CTA BAND ── */
-    .cta-band {
-      background: linear-gradient(135deg, var(--green) 0%, var(--teal) 100%);
-      padding: 100px 80px; text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-band::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .cta-band h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      color: #fff; margin-bottom: 16px; position: relative;
-    }
-    .cta-band p {
-      color: rgba(255,255,255,0.92); font-size: 1.1rem;
-      margin-bottom: 40px; position: relative;
-    }
-    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
-    .btn-white {
-      background: #fff; color: var(--green);
-      padding: 15px 40px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 500; text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
-    .btn-ghost {
-      border: 2px solid rgba(255,255,255,0.5); color: #fff;
-      padding: 13px 38px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 400; text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #2C2C2A !important; color: #d4d3ce;
-      padding: 60px 80px 36px;
-    }
-    .footer-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 40px; margin-bottom: 48px;
-      flex-wrap: wrap;
-    }
-    .footer-brand .logo { font-size: 1.4rem; margin-bottom: 12px; display: block; }
-    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; color: #d4d3ce; }
-    .footer-links h4 {
-      color: #ffffff; font-size: 0.82rem; letter-spacing: 1.5px;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a {
-      color: #c8c7c2; text-decoration: none;
-      font-size: 0.9rem; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: #97C459; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.82rem; color: #c0bfb9; flex-wrap: wrap; gap: 12px;
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── ENVIRONMENTAL IMPACT ── */
-    .env-impact { background: var(--cream); }
-    .env-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 28px; margin-top: 64px;
-    }
-    .env-card {
-      border-radius: 22px; overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .env-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.12); }
-    .env-card-top {
-      padding: 36px 32px 28px;
-      position: relative; overflow: hidden;
-    }
-    .env-card-top::after {
-      content: ''; position: absolute;
-      width: 140px; height: 140px; border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      bottom: -40px; right: -30px;
-    }
-    .ec-carbon .env-card-top  { background: linear-gradient(135deg, #1E5C0A, #3B6D11); }
-    .ec-heat .env-card-top    { background: linear-gradient(135deg, #7a3200, #c05a14); }
-    .ec-water .env-card-top   { background: linear-gradient(135deg, #0a4a6e, #1078a8); }
-    .ec-bio .env-card-top     { background: linear-gradient(135deg, #5a1e6e, #8a3aaa); }
-    .ec-soil .env-card-top    { background: linear-gradient(135deg, #6b3d0a, #a06020); }
-    .ec-air .env-card-top     { background: linear-gradient(135deg, #0F6E56, #18a880); }
-
-    .env-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
-    .env-card-top h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: #fff; margin-bottom: 8px;
-    }
-    .env-card-top .env-stat {
-      font-size: 1.9rem; font-family: 'Playfair Display', serif;
-      font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 4px;
-    }
-    .env-card-top .env-stat-label {
-      font-size: 0.8rem; color: rgba(255,255,255,0.82);
-      letter-spacing: 0.5px;
-    }
-    .env-card-body {
-      background: #fff; padding: 24px 32px;
-    }
-    .env-card-body p {
-      font-size: 0.92rem; line-height: 1.75; color: #222220;
-    }
-    .env-card-body .env-tags {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
-    }
-    .env-tag {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.5px;
-      padding: 4px 12px; border-radius: 100px;
-      background: #f0f4ec; color: var(--green);
-    }
-
-    /* ── MAINTENANCE PROGRAM ── */
-    .maintenance { background: #1a1a18; color: #fff; }
-    .maintenance .section-label { color: #97C459 !important; }
-    .maintenance .section-title { color: #fff; }
-    .maintenance .section-sub   { color: #d4e8c2; max-width: 620px; }
-
-    /* Year timeline */
-    .timeline {
-      position: relative; margin-top: 72px;
-      padding-left: 48px;
-    }
-    .timeline::before {
-      content: ''; position: absolute;
-      left: 15px; top: 8px; bottom: 8px; width: 3px;
-      background: linear-gradient(to bottom, #97C459, #3B6D11, #0F6E56);
-      border-radius: 4px;
-    }
-    .tl-item {
-      position: relative; margin-bottom: 48px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-      align-items: start;
-    }
-    .tl-item:last-child { margin-bottom: 0; }
-    .tl-dot {
-      position: absolute; left: -40px; top: 6px;
-      width: 18px; height: 18px; border-radius: 50%;
-      border: 3px solid #1a1a18;
-      background: #97C459;
-      box-shadow: 0 0 0 3px rgba(151,196,89,0.3);
-    }
-    .tl-year {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: #97C459; margin-bottom: 8px;
-    }
-    .tl-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; color: #fff; margin-bottom: 10px; line-height: 1.3;
-    }
-    .tl-body { font-size: 0.95rem; line-height: 1.8; color: #b8d4a8; }
-    .tl-activities {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(151,196,89,0.2);
-      border-radius: 16px; padding: 24px 28px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    }
-    .tl-act {
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .tl-act-icon {
-      font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;
-    }
-    .tl-act-text { font-size: 0.88rem; color: #c8e0b0; line-height: 1.5; }
-    .tl-act-text strong { display: block; color: #fff; font-weight: 500; font-size: 0.9rem; }
-
-    /* Workers strip */
-    .workers-strip {
-      margin-top: 80px;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden;
-    }
-    .worker-cell {
-      background: rgba(255,255,255,0.03);
-      padding: 36px 28px; text-align: center;
-      transition: background 0.2s;
-    }
-    .worker-cell:hover { background: rgba(255,255,255,0.07); }
-    .worker-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-    .worker-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: #fff; margin-bottom: 6px;
-    }
-    .worker-desc { font-size: 0.83rem; color: #9abf88; line-height: 1.6; }
-
-    /* Inspection cycle box */
-    .inspection-box {
-      margin-top: 64px;
-      background: linear-gradient(135deg, rgba(59,109,17,0.25), rgba(15,110,86,0.2));
-      border: 1px solid rgba(151,196,89,0.25);
-      border-radius: 20px; padding: 48px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-    }
-    .insp-left h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; color: #fff; margin-bottom: 16px;
-    }
-    .insp-left p { font-size: 0.95rem; color: #b8d4a8; line-height: 1.8; }
-    .insp-cycle {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    .insp-item {
-      background: rgba(255,255,255,0.06);
-      border-radius: 12px; padding: 18px 20px;
-      border-left: 3px solid #97C459;
-    }
-    .insp-item .insp-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 700; color: #97C459;
-    }
-    .insp-item .insp-label { font-size: 0.8rem; color: #9abf88; margin-top: 2px; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      nav ul { display: none; }
-      .nav-hamburger { display: flex; }
-      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
-      .hero-left { padding: 40px 0; }
-      .hero-right { height: 360px; }
-      .tree-art { transform: scale(0.7); }
-      section { padding: 72px 24px; }
-      .how-grid, .serve-grid, .env-grid { grid-template-columns: 1fr; }
-      .impact-grid { grid-template-columns: 1fr 1fr; }
-      /* Fix 2: Cost table mobile overflow */
-      .cost-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
-      .cost-table { font-size: 0.82rem; min-width: 580px; }
-      .cta-band { padding: 72px 24px; }
-      footer { padding: 48px 24px 28px; }
-      .footer-top { flex-direction: column; }
-      /* Maintenance section responsive */
-      .tl-item { grid-template-columns: 1fr; gap: 20px; }
-      .tl-activities { grid-template-columns: 1fr; }
-      .workers-strip { grid-template-columns: 1fr 1fr; }
-      .inspection-box { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
-      .timeline { padding-left: 32px; }
-      .tl-dot { left: -26px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232A5E10'/><text y='22' x='4' font-size='20'>🌱</text></svg>">
 </head>
 <body>
 
-<!-- Skip Navigation (Fix 15 - accessibility) -->
-<a href="#main-content" style="position:absolute;left:-9999px;top:4px;z-index:999;padding:8px 16px;background:#3B6D11;color:#fff;border-radius:4px;font-size:0.9rem;text-decoration:none" onfocus="this.style.left='4px'" onblur="this.style.left='-9999px'">Skip to main content</a>
-
-<!-- NAV -->
-<nav aria-label="Main navigation">
-  <div class="logo">
-    <span class="omy">Omy</span><span class="earth">Earth</span><span class="org"> .org</span>
+<!-- ═══════════════════════════════════════════
+     TOP UTILITY BAR
+═══════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="mailto:contact@omyearth.org">✉ contact@omyearth.org</a>
+        <a href="tel:+91">☎ Kerala, India</a>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-social">
+          <a href="#" aria-label="Facebook" title="Facebook">f</a>
+          <a href="#" aria-label="Instagram" title="Instagram">ig</a>
+          <a href="#" aria-label="LinkedIn" title="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube" title="YouTube">yt</a>
+        </div>
+        <span class="topbar-dpiit">✦ DPIIT Registered Startup</span>
+      </div>
+    </div>
   </div>
-  <ul>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#maintenance">Care Program</a></li>
-    <li><a href="#environment">Impact</a></li>
-    <li><a href="#cost">Transparency</a></li>
-    <li><a href="#serve">Who We Serve</a></li>
-    <li><a href="#contact" class="nav-cta">Plant a Tree</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-    <span></span><span></span><span></span>
-  </button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav class="nav" id="nav" role="navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="/" class="nav-logo" aria-label="OmyEarth Home">
+        <div class="nav-logo-icon" aria-hidden="true">🌱</div>
+        <span class="nav-logo-text">
+          <span class="omy">Omy</span><span class="earth">Earth</span><span class="org">.org</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" role="list">
+        <li class="nav-item">
+          <a href="#about" class="nav-link">About <span class="chevron" aria-hidden="true">▾</span></a>
+          <div class="dropdown">
+            <a href="#about">Our Story</a>
+            <a href="#founders">Our Team</a>
+            <a href="#awards">Recognition</a>
+            <a href="#partners">Partners</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#how" class="nav-link">How It Works <span class="chevron" aria-hidden="true">▾</span></a>
+          <div class="dropdown">
+            <a href="#how">The 4-Step Process</a>
+            <a href="#verif">Verification System</a>
+            <a href="#verif">Carbon Tracking</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#pricing" class="nav-link">Get Involved <span class="chevron" aria-hidden="true">▾</span></a>
+          <div class="dropdown">
+            <a href="#pricing">Adopt a Tree</a>
+            <a href="#pricing">Corporate CSR</a>
+            <a href="#pricing">Annual Care Pledge</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#faq" class="nav-link">FAQ</a>
+        </li>
+      </ul>
+
+      <!-- Desktop CTA Buttons -->
+      <div class="nav-actions">
+        <a href="#pricing" class="btn-nav-ghost">Adopt a Tree</a>
+        <a href="mailto:contact@omyearth.org" class="btn-nav-primary">Partner With Us</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 </nav>
 
-<!-- Mobile Nav Drawer -->
-<div class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
-  <a href="#how">How It Works</a>
-  <a href="#maintenance">Care Program</a>
-  <a href="#environment">Impact</a>
-  <a href="#cost">Transparency</a>
-  <a href="#serve">Who We Serve</a>
-  <a href="#contact" class="nav-cta-mobile">Plant a Tree</a>
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mobile-menu-close">
+    <button id="mobileClose" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="mobile-menu-links">
+    <a href="#about">About OmyEarth</a>
+    <a href="#founders">Our Team</a>
+    <a href="#how">How It Works</a>
+    <a href="#verif">Verification System</a>
+    <a href="#pricing">Adopt a Tree</a>
+    <a href="#timeline">Our Journey</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:contact@omyearth.org">Contact Us</a>
+  </nav>
+  <a href="#pricing" class="mobile-menu-cta">🌱 Adopt a Tree Today</a>
 </div>
 
-<main id="main-content">
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-
-  <div class="hero-left reveal">
-    <div class="hero-eyebrow">Climate Action · Kerala, India</div>
-    <h1>Plant.<br><em>Maintain.</em><br>Measure.</h1>
-    <p class="hero-tagline">My Earth. Our Responsibility.</p>
-    <p class="hero-body">
-      <span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> converts donor and corporate funding into measurable, geo-tagged carbon reduction —
-      one tree at a time. We don't just plant. We maintain and track every tree for 5 years.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Plant a Tree — ₹1,000</a>
-      <a href="#how" class="btn-outline">See How It Works</a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="tree-art">
-      <div class="tree-circle tc1"></div>
-      <div class="tree-circle tc2"></div>
-      <div class="tree-circle tc3"></div>
-      <div class="tree-trunk"></div>
-      <div class="tree-roots"></div>
-      <div class="globe-ring"></div>
-
-      <div class="stat-bubble sb1">
-        <div class="num">5 Yrs</div>
-        <div class="lbl">Maintenance Guarantee</div>
-      </div>
-      <div class="stat-bubble sb2">
-        <div class="num">100%</div>
-        <div class="lbl">Geo-Tagged Trees</div>
-      </div>
-      <div class="stat-bubble sb3">
-        <div class="num">₹1,500</div>
-        <div class="lbl">Annual Care / Tree</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-inner">
-    <span>Tree Plantation</span><span class="dot">✦</span>
-    <span>Carbon Offset</span><span class="dot">✦</span>
-    <span>Geo-Tagged</span><span class="dot">✦</span>
-    <span>5-Year Maintenance</span><span class="dot">✦</span>
-    <span>Corporate CSR</span><span class="dot">✦</span>
-    <span>Donor Dashboard</span><span class="dot">✦</span>
-    <span>Community First</span><span class="dot">✦</span>
-    <span>Measurable Impact</span><span class="dot">✦</span>
+<!-- ═══════════════════════════════════════════
+     CREDENTIAL TICKER
+═══════════════════════════════════════════ -->
+<div class="ticker-wrap" role="marquee" aria-label="Credentials">
+  <div class="ticker-track">
+    <!-- First set -->
+    <span class="ticker-item"><span class="ticker-dot">●</span> DPIIT Registered Startup</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> KSUM Recognised · Kerala Startup Mission</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> KFRI Scientific Partnership · Kerala Forest Research Institute</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> GPS Geo-Tagged Trees</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> IPCC Tier-2 Carbon Methodology</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> Bi-Annual Girth Measurements</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> Kudumbasree Women's SHG Network</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 5-Year Maintenance Cycles</span>
     <!-- Duplicate for seamless loop -->
-    <span>Tree Plantation</span><span class="dot">✦</span>
-    <span>Carbon Offset</span><span class="dot">✦</span>
-    <span>Geo-Tagged</span><span class="dot">✦</span>
-    <span>5-Year Maintenance</span><span class="dot">✦</span>
-    <span>Corporate CSR</span><span class="dot">✦</span>
-    <span>Donor Dashboard</span><span class="dot">✦</span>
-    <span>Community First</span><span class="dot">✦</span>
-    <span>Measurable Impact</span><span class="dot">✦</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> DPIIT Registered Startup</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> KSUM Recognised · Kerala Startup Mission</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> KFRI Scientific Partnership · Kerala Forest Research Institute</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> GPS Geo-Tagged Trees</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> IPCC Tier-2 Carbon Methodology</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> Bi-Annual Girth Measurements</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> Kudumbasree Women's SHG Network</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 5-Year Maintenance Cycles</span>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="section-label">Our 3-Layer Model</div>
-  <h2 class="section-title reveal">How OmyEarth Works</h2>
-  <p class="section-sub reveal">Most plantation drives plant and walk away. We plant, maintain, and prove impact — with data.</p>
-
-  <div class="how-grid">
-    <div class="how-card reveal">
-      <div class="how-num">01</div>
-      <div class="how-icon ic1">🌱</div>
-      <h3>Scientific Plantation</h3>
-      <p>We select sites using climate data, choose native & fruit-bearing species, and plant with precision — not just numbers. Every tree is geo-tagged with exact GPS coordinates from Day 1.</p>
-    </div>
-    <div class="how-card reveal">
-      <div class="how-num">02</div>
-      <div class="how-icon ic2">💧</div>
-      <h3>5-Year Maintenance</h3>
-      <p>Our core differentiator. Watering, manuring, protection, and health checks — every 6 months for 5 years. Executed by trained Kudumbasree and local community workers.</p>
-    </div>
-    <div class="how-card reveal">
-      <div class="how-num">03</div>
-      <div class="how-icon ic3">📊</div>
-      <h3>Transparent Reporting</h3>
-      <p>Donors and corporate partners get real dashboards. Girth measurements, survival rates, carbon offset calculations — logged and updated every six months. No greenwashing.</p>
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero" id="about">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-label" aria-label="Location">🌿 Kerala, India · Native Species Platform</div>
+        <h1>
+          <em>Verified</em> Trees.<br>
+          Measured Carbon.<br>
+          Real Impact.
+        </h1>
+        <p class="hero-sub">
+          OmyEarth plants GPS geo-tagged native trees with 5-year maintenance cycles and IPCC Tier-2 carbon tracking — because planting is easy; making trees survive is the real work.
+        </p>
+        <div class="hero-ctas">
+          <a href="#pricing" class="btn-hero-primary">🌱 Adopt a Tree — ₹150</a>
+          <a href="mailto:contact@omyearth.org" class="btn-hero-ghost">Corporate CSR →</a>
+        </div>
+        <div class="hero-proof" role="list" aria-label="Credentials">
+          <span class="proof-pill" role="listitem">📍 GPS Geo-Tagged</span>
+          <span class="proof-pill" role="listitem">📐 Bi-Annual Inspections</span>
+          <span class="proof-pill" role="listitem">🧮 IPCC Tier-2</span>
+          <span class="proof-pill" role="listitem">✦ DPIIT Startup</span>
+          <span class="proof-pill" role="listitem">🔬 KFRI Partner</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card-stack">
+          <div class="hero-stat-card">
+            <div class="hsc-num">80%</div>
+            <div class="hsc-label">Targeted tree survival rate — vs. the national avg of ~30%</div>
+            <div class="hsc-row">
+              <div class="hsc-mini"><strong>5 yrs</strong> Maintenance</div>
+              <div class="hsc-mini"><strong>GPS</strong> Every tree</div>
+              <div class="hsc-mini"><strong>KFRI</strong> Verified</div>
+            </div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hsc-num">₹150</div>
+            <div class="hsc-label">To adopt a tree. ₹1,500/year for 5-year care. Full cost transparency.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- MAINTENANCE PROGRAM -->
-<section class="maintenance" id="maintenance">
-  <div class="section-label">Our Core Differentiator</div>
-  <h2 class="section-title reveal">The 5-Year Plant Care Program</h2>
-  <p class="section-sub reveal">Planting a tree takes a day. Growing a tree takes years. <span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> commits to every tree for 5 full years — with a structured, funded, and monitored care cycle from Day 1.</p>
-
-  <!-- Year-by-Year Timeline -->
-  <div class="timeline">
-
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-left">
-        <div class="tl-year">Year 1 — Foundation</div>
-        <h3 class="tl-title">Establish, Protect & Root</h3>
-        <p class="tl-body">The most critical year. The sapling is freshly transplanted and highly vulnerable. Intensive watering, organic manuring, and physical protection are applied. Each tree is geo-tagged with GPS coordinates and baseline girth is recorded. Survival checks happen every 6 weeks.</p>
+<!-- ═══════════════════════════════════════════
+     IMPACT BAR
+═══════════════════════════════════════════ -->
+<section class="impact-bar" aria-label="Key Impact Metrics">
+  <div class="container">
+    <div class="impact-bar-grid">
+      <div class="impact-bar-item reveal">
+        <div class="ib-num">5 Yr</div>
+        <div class="ib-label">Maintenance Commitment Per Tree</div>
       </div>
-      <div class="tl-activities">
-        <div class="tl-act"><span class="tl-act-icon">📍</span><div class="tl-act-text"><strong>GPS Geo-Tagging</strong>Exact coordinates logged on planting day</div></div>
-        <div class="tl-act"><span class="tl-act-icon">💧</span><div class="tl-act-text"><strong>Intensive Watering</strong>Regular schedule via Kudumbasree workers</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🌿</span><div class="tl-act-text"><strong>Organic Manuring</strong>250g natural fertiliser every 6 months</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🛡️</span><div class="tl-act-text"><strong>Physical Protection</strong>Tree guards installed on barren/exposed land</div></div>
-        <div class="tl-act"><span class="tl-act-icon">📏</span><div class="tl-act-text"><strong>Baseline Girth</strong>First measurement recorded for growth tracking</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🔁</span><div class="tl-act-text"><strong>Replacement Protocol</strong>Failed saplings replaced within 30 days</div></div>
+      <div class="impact-bar-item reveal">
+        <div class="ib-num">100%</div>
+        <div class="ib-label">GPS Geo-Tagged Trees</div>
       </div>
-    </div>
-
-    <div class="tl-item reveal">
-      <div class="tl-dot" style="background:#3B6D11;"></div>
-      <div class="tl-left">
-        <div class="tl-year">Year 2 & 3 — Growth Phase</div>
-        <h3 class="tl-title">Strengthen & Establish Root Systems</h3>
-        <p class="tl-body">Root systems deepen and canopy starts forming. Watering frequency is reduced as the tree becomes self-sustaining, but manuring continues every 6 months. Girth is measured and updated in the donor dashboard. Field inspectors visit each site and log health data.</p>
+      <div class="impact-bar-item reveal">
+        <div class="ib-num">IPCC</div>
+        <div class="ib-label">Tier-2 Carbon Methodology</div>
       </div>
-      <div class="tl-activities">
-        <div class="tl-act"><span class="tl-act-icon">📐</span><div class="tl-act-text"><strong>Bi-Annual Girth Check</strong>Growth measured and logged every 6 months</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🌱</span><div class="tl-act-text"><strong>Reduced Watering</strong>Adjusted to seasonal needs as roots deepen</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🧪</span><div class="tl-act-text"><strong>Continued Manuring</strong>Organic inputs maintained on schedule</div></div>
-        <div class="tl-act"><span class="tl-act-icon">📊</span><div class="tl-act-text"><strong>Donor Dashboard Update</strong>Photos, girth data & health status published</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🔍</span><div class="tl-act-text"><strong>Field Inspector Visit</strong>Trained inspector documents on-site health</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🌦️</span><div class="tl-act-text"><strong>Monsoon Monitoring</strong>Drainage and root flood protection in Kerala</div></div>
+      <div class="impact-bar-item reveal">
+        <div class="ib-num">SHG</div>
+        <div class="ib-label">Kudumbasree Women's Network</div>
       </div>
-    </div>
-
-    <div class="tl-item reveal">
-      <div class="tl-dot" style="background:#0F6E56;"></div>
-      <div class="tl-left">
-        <div class="tl-year">Year 4 & 5 — Maturity</div>
-        <h3 class="tl-title">Measure, Certify & Hand Over</h3>
-        <p class="tl-body">The tree is now largely self-sufficient. Final girth and canopy measurements are taken. Carbon offset is calculated per tree. Donors and corporate partners receive an official Impact Certificate. Where possible, trees are transitioned to community or land-owner care under a long-term protection agreement.</p>
-      </div>
-      <div class="tl-activities">
-        <div class="tl-act"><span class="tl-act-icon">🏆</span><div class="tl-act-text"><strong>Impact Certificate</strong>Official report issued to donor / CSR partner</div></div>
-        <div class="tl-act"><span class="tl-act-icon">♻️</span><div class="tl-act-text"><strong>Carbon Calculation</strong>Verified CO₂ offset measured per tree</div></div>
-        <div class="tl-act"><span class="tl-act-icon">📸</span><div class="tl-act-text"><strong>Before & After Report</strong>Visual growth documentation from Day 1</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🤝</span><div class="tl-act-text"><strong>Community Handover</strong>Tree registered under long-term protection pact</div></div>
-        <div class="tl-act"><span class="tl-act-icon">📡</span><div class="tl-act-text"><strong>Final GPS Audit</strong>Location, health and canopy size verified</div></div>
-        <div class="tl-act"><span class="tl-act-icon">🔄</span><div class="tl-act-text"><strong>Renewal Option</strong>Sponsors can extend care for another 5 years</div></div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Who Executes -->
-  <div class="workers-strip reveal">
-    <div class="worker-cell">
-      <span class="worker-icon">👩‍🌾</span>
-      <div class="worker-title">Kudumbasree Workers</div>
-      <div class="worker-desc">Trained local women from Kerala's Kudumbasree network handle daily watering and manuring — providing community employment while ensuring consistent care.</div>
-    </div>
-    <div class="worker-cell">
-      <span class="worker-icon">🔍</span>
-      <div class="worker-title">Field Inspectors</div>
-      <div class="worker-desc">Dedicated inspectors visit each plantation site every 6 months. They measure girth, assess health, photograph trees, and upload data to our tracking system.</div>
-    </div>
-    <div class="worker-cell">
-      <span class="worker-icon">🤝</span>
-      <div class="worker-title">Volunteer Network</div>
-      <div class="worker-desc">Registered volunteers monitor nearby sites, report issues, and recommend new planting spots — keeping the community connected to the mission.</div>
-    </div>
-    <div class="worker-cell">
-      <span class="worker-icon">🖥️</span>
-      <div class="worker-title">Admin & Data Team</div>
-      <div class="worker-desc">A 4-person operations team manages data entry, donor reporting, coordination with field staff, and compliance with all inspection schedules.</div>
-    </div>
-  </div>
-
-  <!-- Inspection Cycle -->
-  <div class="inspection-box reveal">
-    <div class="insp-left">
-      <h3>The Inspection & Data Cycle</h3>
-      <p>Every tree in the <span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> network is inspected on a fixed bi-annual schedule. Girth circumference is measured, health is documented, and data is uploaded to the donor portal within 7 days of each visit. No tree goes unaccounted for — ever.</p>
-      <p style="margin-top:16px; font-size:0.9rem; color:#7ab860;">Cost per tree per year: <strong style="color:#97C459; font-size:1.05rem;">₹1,500</strong> — covering all care, inspection, and reporting activities.</p>
-    </div>
-    <div class="insp-cycle">
-      <div class="insp-item">
-        <div class="insp-num">2×</div>
-        <div class="insp-label">Field inspections per year per tree</div>
-      </div>
-      <div class="insp-item">
-        <div class="insp-num">6 Mo</div>
-        <div class="insp-label">Maximum gap between any two inspections</div>
-      </div>
-      <div class="insp-item">
-        <div class="insp-num">10</div>
-        <div class="insp-label">Data points recorded per inspection visit</div>
-      </div>
-      <div class="insp-item">
-        <div class="insp-num">7 Days</div>
-        <div class="insp-label">Maximum time to publish data to donor portal</div>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- IMPACT NUMBERS -->
-<section class="impact" id="impact">
-  <div class="section-label">Why It Matters</div>
-  <h2 class="section-title reveal">The Numbers Behind the Mission</h2>
-  <p class="section-sub reveal">India's plantation drives fail because of one reason: no maintenance. We fix that.</p>
-
-  <div class="impact-grid reveal">
-    <div class="impact-cell">
-      <div class="impact-num">&lt;30%</div>
-      <div class="impact-label">Typical tree survival rate in India's drives</div>
-    </div>
-    <div class="impact-cell">
-      <div class="impact-num">5 Yrs</div>
-      <div class="impact-label"><span class="brand brand--dark"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> maintenance commitment per tree</div>
-    </div>
-    <div class="impact-cell">
-      <div class="impact-num">₹1,500</div>
-      <div class="impact-label">Annual care cost per tree (2026 rate)</div>
-    </div>
-    <div class="impact-cell">
-      <div class="impact-num">100%</div>
-      <div class="impact-label">Trees geo-tagged with GPS on planting day</div>
     </div>
   </div>
 </section>
 
-<!-- ENVIRONMENTAL IMPACT -->
-<section class="env-impact" id="environment">
-  <div class="section-label">Beyond Carbon</div>
-  <h2 class="section-title reveal">Every Tree Does More Than You Think</h2>
-  <p class="section-sub reveal">A maintained tree is a living system. It fights climate change on six fronts simultaneously — carbon is just the beginning.</p>
-
-  <div class="env-grid">
-
-    <div class="env-card ec-carbon reveal">
-      <div class="env-card-top">
-        <span class="env-icon">🌿</span>
-        <div class="env-stat">~21 kg</div>
-        <div class="env-stat-label">CO₂ absorbed per tree per year (mature)</div>
-        <h3>Carbon Absorption</h3>
+<!-- ═══════════════════════════════════════════
+     THE REAL PROBLEM
+═══════════════════════════════════════════ -->
+<section class="problem" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-left reveal">
+        <div class="section-eyebrow">The Ground Reality</div>
+        <h2 class="section-title" id="problem-title">India plants millions of trees. Most don't survive.</h2>
+        <div class="problem-stat" aria-label="8 in 10">8 in 10</div>
+        <p class="problem-context">
+          Trees planted in India never live to see their second birthday. Not because of bad intentions — but because the industry measures planting, not survival. Plantation drives end at the photo-op.
+        </p>
+        <a href="#how" class="btn-hero-ghost" style="display:inline-block; margin-top: 0.5rem;">See how we're different →</a>
       </div>
-      <div class="env-card-body">
-        <p>Through photosynthesis, every tree pulls CO₂ out of the atmosphere and locks it into wood, roots, and soil. A grove of 1,000 mature trees absorbs the equivalent of ~210 car trips from Kochi to Bangalore every year.</p>
-        <div class="env-tags">
-          <span class="env-tag">Carbon Sequestration</span>
-          <span class="env-tag">Climate Mitigation</span>
-          <span class="env-tag">ESG Verified</span>
+      <div class="problem-right reveal">
+        <div class="problem-cards">
+          <div class="problem-card">
+            <div class="pc-icon">📷</div>
+            <div class="pc-text">
+              <h4>Planted, Not Maintained</h4>
+              <p>Most drives end after Day 1. No watering schedule, no protection, no accountability for what happens next.</p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="pc-icon">📊</div>
+            <div class="pc-text">
+              <h4>No Verified Carbon Data</h4>
+              <p>Corporations fund green initiatives but receive no credible, auditable carbon reduction metrics in return.</p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="pc-icon">📍</div>
+            <div class="pc-text">
+              <h4>Zero Traceability</h4>
+              <p>Donors can't track "their" tree. No GPS coordinates, no girth measurements, no proof of survival.</p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="pc-icon">🤝</div>
+            <div class="pc-text">
+              <h4>Community Left Behind</h4>
+              <p>Plantation drives bring outsiders; the local Kudumbasree network and tribal communities are rarely integrated.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="env-card ec-heat reveal">
-      <div class="env-card-top">
-        <span class="env-icon">🌡️</span>
-        <div class="env-stat">2–8°C</div>
-        <div class="env-stat-label">Local temperature reduction under a tree canopy</div>
-        <h3>Heat Island Reduction</h3>
-      </div>
-      <div class="env-card-body">
-        <p>Urban and rural areas with tree cover are measurably cooler. Tree canopies block solar radiation and release moisture through transpiration — acting as natural air conditioners that reduce energy demand and protect communities from extreme heat events.</p>
-        <div class="env-tags">
-          <span class="env-tag">Urban Cooling</span>
-          <span class="env-tag">Heat Wave Protection</span>
-          <span class="env-tag">Energy Savings</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="env-card ec-water reveal">
-      <div class="env-card-top">
-        <span class="env-icon">💧</span>
-        <div class="env-stat">75%</div>
-        <div class="env-stat-label">Reduction in surface runoff with forest cover</div>
-        <h3>Water Cycle Restoration</h3>
-      </div>
-      <div class="env-card-body">
-        <p>Tree roots absorb rainfall and recharge groundwater tables. Their canopies slow rainfall impact, preventing soil erosion. Forested areas maintain year-round stream flow and dramatically reduce flood risk during Kerala's heavy monsoon seasons.</p>
-        <div class="env-tags">
-          <span class="env-tag">Groundwater Recharge</span>
-          <span class="env-tag">Flood Prevention</span>
-          <span class="env-tag">Monsoon Resilience</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="env-card ec-bio reveal">
-      <div class="env-card-top">
-        <span class="env-icon">🦋</span>
-        <div class="env-stat">500+</div>
-        <div class="env-stat-label">Species supported by a single mature native tree</div>
-        <h3>Biodiversity & Ecosystems</h3>
-      </div>
-      <div class="env-card-body">
-        <p>Native trees are not just trees — they are entire ecosystems. Birds, insects, fungi, and microorganisms all depend on them. <span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> prioritises native species that restore indigenous food webs and bring back wildlife that has disappeared from degraded land.</p>
-        <div class="env-tags">
-          <span class="env-tag">Native Species</span>
-          <span class="env-tag">Wildlife Habitat</span>
-          <span class="env-tag">Food Web Restoration</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="env-card ec-soil reveal">
-      <div class="env-card-top">
-        <span class="env-icon">🪱</span>
-        <div class="env-stat">3×</div>
-        <div class="env-stat-label">More organic matter in soil under forest cover</div>
-        <h3>Soil Health & Fertility</h3>
-      </div>
-      <div class="env-card-body">
-        <p>Falling leaves create a natural mulch layer that feeds soil microbes, improves structure, and prevents erosion. Healthy soil stores carbon, grows food, and is the foundation of all agriculture. Degraded land becomes productive again within a few years of consistent planting.</p>
-        <div class="env-tags">
-          <span class="env-tag">Erosion Control</span>
-          <span class="env-tag">Soil Carbon Storage</span>
-          <span class="env-tag">Agroforestry</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="env-card ec-air reveal">
-      <div class="env-card-top">
-        <span class="env-icon">🌬️</span>
-        <div class="env-stat">60%</div>
-        <div class="env-stat-label">Particulate matter filtered by roadside tree rows</div>
-        <h3>Air Quality & Human Health</h3>
-      </div>
-      <div class="env-card-body">
-        <p>Trees filter dust, PM2.5, and harmful pollutants from the air through their leaves and bark. Communities near green cover report lower rates of respiratory illness. For India's rapidly urbanising towns, tree buffers are among the most cost-effective public health investments available.</p>
-        <div class="env-tags">
-          <span class="env-tag">PM2.5 Filtration</span>
-          <span class="env-tag">Noise Reduction</span>
-          <span class="env-tag">Public Health</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- COST TRANSPARENCY -->
-<section class="cost" id="cost">
-  <div class="section-label">Full Transparency</div>
-  <h2 class="section-title reveal">Where Your Money Goes</h2>
-  <p class="section-sub reveal">Every rupee tracked. Here is the complete 5-year lifecycle cost per tree — updated to 2026 rates.</p>
-
-  <div class="cost-table-wrap">
-  <table class="cost-table reveal">
-    <thead>
-      <tr>
-        <th>Cost Component</th>
-        <th>Year 1</th>
-        <th>Year 2</th>
-        <th>Year 3</th>
-        <th>Year 4</th>
-        <th>Year 5</th>
-        <th>5-Yr Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Sapling (nursery sourcing)</td>
-        <td>₹100</td><td>—</td><td>—</td><td>—</td><td>—</td><td>₹100</td>
-      </tr>
-      <tr>
-        <td>Planting Labour</td>
-        <td>₹65</td><td>—</td><td>—</td><td>—</td><td>—</td><td>₹65</td>
-      </tr>
-      <tr>
-        <td>Tree Care (watering, manuring, protection)</td>
-        <td>₹1,500</td><td>₹1,500</td><td>₹1,500</td><td>₹1,500</td><td>₹1,500</td><td>₹7,500</td>
-      </tr>
-      <tr>
-        <td>Inspection &amp; Data Update</td>
-        <td>₹34</td><td>₹34</td><td>₹34</td><td>₹34</td><td>₹34</td><td>₹169</td>
-      </tr>
-      <tr>
-        <td>Administration</td>
-        <td>₹42</td><td>₹42</td><td>₹42</td><td>₹42</td><td>₹42</td><td>₹211</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td>Total Per Tree</td>
-        <td>₹1,741</td><td>₹1,576</td><td>₹1,576</td><td>₹1,576</td><td>₹1,576</td><td>₹8,045</td>
-      </tr>
-    </tfoot>
-  </table>
-  </div>
-  <p class="cost-note">Individual sponsorship: ₹1,000/tree (subsidised by corporate CSR partnerships). Corporate bulk rates available on request.</p>
-</section>
-
-<!-- WHO WE SERVE -->
-<section class="serve" id="serve">
-  <div class="section-label">Our Stakeholders</div>
-  <h2 class="section-title reveal">Who We Work With</h2>
-  <p class="section-sub reveal"><span class="brand"><span class="b-omy">Omy</span><span class="b-earth">Earth</span></span> bridges individuals, corporations, and communities — all working toward a measurable green outcome.</p>
-
-  <div class="serve-grid">
-    <div class="serve-card reveal">
-      <span class="tag tag-corp">Corporate</span>
-      <h3>CSR & ESG Teams</h3>
-      <p>Meet your ESG targets with verified, geo-tagged carbon offset. We provide impact certificates, co-branded reports, and real data — not just certificates of participation.</p>
-    </div>
-    <div class="serve-card reveal">
-      <span class="tag tag-ind">Individual</span>
-      <h3>Conscious Contributors</h3>
-      <p>Sponsor a single tree or a grove. Track it on our dashboard. See it grow. Get 6-monthly updates on your tree's girth, health, and carbon absorbed.</p>
-    </div>
-    <div class="serve-card reveal">
-      <span class="tag tag-gov">Government & NGOs</span>
-      <h3>Land & Policy Partners</h3>
-      <p>We collaborate with government bodies, panchayats, and NGOs for land access, agroforestry integration, and community employment through our Kudumbasree model.</p>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
-<div class="cta-band" id="contact">
-  <h2>Ready to Plant Your First Tree?</h2>
-  <p>₹1,000 sponsors one geo-tagged tree — maintained and tracked for 5 full years.</p>
-  <div class="cta-actions">
-    <a href="mailto:contact@omyearth.org?subject=Plant a Tree — OmyEarth" class="btn-white">
-      Sponsor a Tree
-    </a>
-    <a href="mailto:contact@omyearth.org?subject=CSR Partnership Enquiry — OmyEarth" class="btn-ghost">
-      Corporate Partnership
-    </a>
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════ -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Process</div>
+      <h2 class="section-title" id="how-title">Four steps from funding to verified carbon impact</h2>
+      <p class="section-sub">Every tree we plant is monitored, measured, and reported — from sapling to canopy.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div class="step-icon">🗺️</div>
+        <div class="step-title">Scientific Site Selection</div>
+        <p class="step-desc">KFRI-guided native species selection for Kerala's soil types and microclimates. Every location is scouted for survival probability before a single sapling is ordered.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <div class="step-icon">📍</div>
+        <div class="step-title">GPS Geo-Tagging at Planting</div>
+        <p class="step-desc">Every tree gets an exact GPS coordinate logged at the moment of planting by our Kudumbasree field team. Your tree exists on a map — forever traceable.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <div class="step-icon">📐</div>
+        <div class="step-title">Bi-Annual Girth Inspections</div>
+        <p class="step-desc">Every 6 months, trained field staff measure girth at breast height (GBH). This data feeds directly into the IPCC Tier-2 biomass equation to calculate actual carbon sequestered.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">4</div>
+        <div class="step-icon">📋</div>
+        <div class="step-title">Verified Impact Reports</div>
+        <p class="step-desc">Donors and corporate partners receive periodic impact reports with per-tree survival status, carbon metrics, and geotagged photo evidence. No greenwashing. Just numbers.</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="logo">
-        <span class="omy">Omy</span><span class="earth">Earth</span>
-      </span>
-      <p>Converting donor and corporate funding into measurable carbon reduction — one tree at a time. Based in Kerala, India.</p>
+<!-- ═══════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════ -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Get Involved</div>
+      <h2 class="section-title" id="pricing-title">Every rupee you give is tracked to a living tree</h2>
+      <p class="section-sub">Choose your level of commitment. Full cost transparency on every tier.</p>
     </div>
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#cost">Cost Transparency</a></li>
-        <li><a href="#serve">Who We Serve</a></li>
-        <li><a href="#contact">Plant a Tree</a></li>
-      </ul>
-    </div>
-    <div class="footer-links">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:contact@omyearth.org">contact@omyearth.org</a></li>
-        <li><a href="https://omyearth.org">omyearth.org</a></li>
-        <li><a href="https://maps.google.com/?q=Kerala,+India" target="_blank" rel="noopener noreferrer">Kerala, India</a></li>
-      </ul>
+    <div class="pricing-grid">
+      <!-- Tier 1: Individual Adoption -->
+      <div class="pricing-card reveal">
+        <div class="card-icon">🌱</div>
+        <div class="card-name">Individual Adoption</div>
+        <div class="card-price">₹150 <small>one-time</small></div>
+        <p class="card-desc">Plant one native tree in Kerala's soil. Geotagged from Day 1. Receive your tree's GPS coordinates and a digital adoption certificate.</p>
+        <ul class="card-features">
+          <li class="card-feat">GPS coordinates of your tree</li>
+          <li class="card-feat">Digital adoption certificate</li>
+          <li class="card-feat">KFRI-selected native species</li>
+          <li class="card-feat">Entry in the OmyEarth tree registry</li>
+        </ul>
+        <a href="mailto:contact@omyearth.org?subject=Tree Adoption" class="btn-card-ghost">Adopt a Tree →</a>
+      </div>
+
+      <!-- Tier 2: Annual Care (Featured) -->
+      <div class="pricing-card featured reveal">
+        <div class="featured-badge">MOST IMPACTFUL</div>
+        <div class="card-icon">🛡️</div>
+        <div class="card-name">Annual Care Pledge</div>
+        <div class="card-price">₹1,500 <small>/year/tree</small></div>
+        <p class="card-desc">Fund a full year of professional maintenance for one tree: watering, organic manuring, weed clearance, and bi-annual girth inspection.</p>
+        <ul class="card-features">
+          <li class="card-feat">Everything in Individual Adoption</li>
+          <li class="card-feat">Annual maintenance funded (12 months)</li>
+          <li class="card-feat">Bi-annual inspection report with photos</li>
+          <li class="card-feat">Carbon sequestration certificate (IPCC basis)</li>
+          <li class="card-feat">Survival status update every 6 months</li>
+        </ul>
+        <a href="mailto:contact@omyearth.org?subject=Annual Care Pledge" class="btn-card-primary">Pledge Annual Care →</a>
+      </div>
+
+      <!-- Tier 3: Corporate -->
+      <div class="pricing-card reveal">
+        <div class="card-icon">🏢</div>
+        <div class="card-name">Corporate CSR Programme</div>
+        <div class="card-price">Custom <small>B2B</small></div>
+        <p class="card-desc">Scale your ESG commitments with a verified plantation programme. We handle end-to-end execution; you receive auditable carbon reduction data for your CSR report.</p>
+        <ul class="card-features">
+          <li class="card-feat">Minimum 500 trees per engagement</li>
+          <li class="card-feat">Co-branded impact certificates</li>
+          <li class="card-feat">Quarterly verified carbon reports</li>
+          <li class="card-feat">IPCC Tier-2 methodology documentation</li>
+          <li class="card-feat">Site visit access for your sustainability team</li>
+        </ul>
+        <a href="mailto:contact@omyearth.org?subject=Corporate CSR Partnership" class="btn-card-ghost">Request a Proposal →</a>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 OmyEarth. All rights reserved.</span>
-    <span>My Earth. Our Responsibility.</span>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TRANSPARENCY CALLOUT
+═══════════════════════════════════════════ -->
+<section class="transparency" aria-labelledby="trans-title">
+  <div class="container">
+    <div class="transparency-inner">
+      <div class="transparency-head reveal">
+        <h3 id="trans-title">Where every rupee goes — full cost breakdown</h3>
+        <p>We are the only plantation initiative in Kerala that publishes a complete per-tree lifecycle cost breakdown.</p>
+      </div>
+      <div class="cost-breakdown reveal">
+        <div class="cost-item">
+          <div class="cost-pct">₹80</div>
+          <div class="cost-label">Sapling & Planting</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-pct">₹375</div>
+          <div class="cost-label">5-Yr Manuring & Watering</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-pct">₹126</div>
+          <div class="cost-label">Field Inspection (5 Yrs)</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-pct">₹168</div>
+          <div class="cost-label">Admin & Coordination</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-pct">~₹750</div>
+          <div class="cost-label">Total Lifecycle Cost</div>
+        </div>
+      </div>
+      <p class="cost-note reveal">* ₹150 adoption + ₹1,500/year care pledge fully funds the 5-year lifecycle of one verified native tree.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VERIFICATION & CARBON
+═══════════════════════════════════════════ -->
+<section class="verif" id="verif" aria-labelledby="verif-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Accountability Chain</div>
+      <h2 class="section-title" id="verif-title">Not one tree planted without a verified data trail</h2>
+    </div>
+    <div class="verif-grid">
+      <div class="verif-steps reveal">
+        <div class="verif-step">
+          <div class="vs-num">1</div>
+          <div class="vs-text">
+            <h4>GPS Coordinate Logged at Planting</h4>
+            <p>Exact latitude/longitude captured via mobile app by Kudumbasree field staff on Day 1. Immutable record from the first moment.</p>
+          </div>
+        </div>
+        <div class="verif-step">
+          <div class="vs-num">2</div>
+          <div class="vs-text">
+            <h4>Species & Site Data Recorded</h4>
+            <p>Native species name, land type, soil condition, and planting date logged against each GPS coordinate in our database.</p>
+          </div>
+        </div>
+        <div class="verif-step">
+          <div class="vs-num">3</div>
+          <div class="vs-text">
+            <h4>Bi-Annual Girth Measurement (GBH)</h4>
+            <p>Every 6 months, a paid field inspector measures Girth at Breast Height. Photos, measurements, and survival status uploaded to the system.</p>
+          </div>
+        </div>
+        <div class="verif-step">
+          <div class="vs-num">4</div>
+          <div class="vs-text">
+            <h4>IPCC Tier-2 Biomass Calculation</h4>
+            <p>GBH data feeds the IPCC Tier-2 allometric equation for tropical mixed forests. Output: verified tonnes of CO₂ sequestered per tree per year.</p>
+          </div>
+        </div>
+        <div class="verif-step">
+          <div class="vs-num">5</div>
+          <div class="vs-text">
+            <h4>Impact Certificate Issued</h4>
+            <p>Donor or corporate partner receives a signed impact certificate with exact coordinates, species name, GBH readings, and calculated CO₂ sequestered.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carbon-box reveal">
+        <h3>Carbon Sequestration Reference</h3>
+        <table class="carbon-table" aria-label="Carbon calculation reference">
+          <tbody>
+            <tr><td>Methodology</td><td>IPCC Tier-2</td></tr>
+            <tr><td>Equation basis</td><td>Tropical mixed forest biomass</td></tr>
+            <tr><td>Measurement frequency</td><td>Every 6 months</td></tr>
+            <tr><td>Parameter measured</td><td>GBH (Girth at Breast Height)</td></tr>
+            <tr><td>Scientific partner</td><td>KFRI, Kerala</td></tr>
+            <tr><td>Avg CO₂/tree/yr (mature)</td><td>~10–22 kg/year</td></tr>
+            <tr><td>Cumulative over 5 yrs</td><td>~50–110 kg CO₂/tree</td></tr>
+            <tr><td>Verification record</td><td>Per-tree, auditable</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TIMELINE
+═══════════════════════════════════════════ -->
+<section class="timeline-section" id="timeline" aria-labelledby="tl-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Journey</div>
+      <h2 class="section-title" id="tl-title">Building the foundation for verified reforestation</h2>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-content">
+          <div class="t-year">2024 · Q3</div>
+          <h4>Concept & Research</h4>
+          <p>OmyEarth concept formalised. Baseline research on Kerala tree survival rates, plantation cost structures, and CSR funding gaps initiated.</p>
+          <div class="t-tags"><span class="t-tag">Research</span><span class="t-tag">Foundation</span></div>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-content">
+          <div class="t-year">2024 · Q4</div>
+          <h4>DPIIT Startup India Recognition</h4>
+          <p>OmyEarth registered as a DPIIT-recognised startup under Startup India, validating innovation in tech-monitored native tree plantation.</p>
+          <div class="t-tags"><span class="t-tag">DPIIT</span><span class="t-tag">Legal</span></div>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-content">
+          <div class="t-year">2025 · Q1</div>
+          <h4>KSUM Engagement Initiated</h4>
+          <p>Kerala Startup Mission UID registration and engagement with KSUM schemes: Idea Grant, Marketing Support, and Investment pipeline.</p>
+          <div class="t-tags"><span class="t-tag">KSUM</span><span class="t-tag">Funding</span></div>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-content">
+          <div class="t-year">2025 · Q2</div>
+          <h4>KFRI Scientific Partnership — In Progress</h4>
+          <p>Memorandum of Understanding with Kerala Forest Research Institute for species selection methodology, carbon protocol validation, and field inspection standards.</p>
+          <div class="t-tags"><span class="t-tag">KFRI</span><span class="t-tag">Science</span></div>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-content">
+          <div class="t-year">2025 · Q3–Q4</div>
+          <h4>Pilot Plantation Launch</h4>
+          <p>First geo-tagged native tree plantation in Kerala with full data pipeline: GPS logging, species database, bi-annual inspection cycle, and donor reporting live.</p>
+          <div class="t-tags"><span class="t-tag">Pilot</span><span class="t-tag">Launch</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AWARDS & RECOGNITION
+═══════════════════════════════════════════ -->
+<section class="awards" id="awards" aria-labelledby="awards-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Recognition</div>
+      <h2 class="section-title" id="awards-title">Credentialed, validated, and independently recognised</h2>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-icon">🏛️</div>
+        <div class="award-name">DPIIT Recognised Startup</div>
+        <p class="award-desc">Registered under Startup India for innovation in tech-monitored reforestation and verified carbon impact.</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🚀</div>
+        <div class="award-name">KSUM Certified</div>
+        <p class="award-desc">Kerala Startup Mission UID registration. Engaged for Idea Grant, Marketing Support, and Investment Schemes.</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🔬</div>
+        <div class="award-name">KFRI Scientific Partner</div>
+        <p class="award-desc">Kerala Forest Research Institute partnership for native species selection and IPCC-aligned carbon methodology validation.</p>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📜</div>
+        <div class="award-name">OmyEarth Trust — 80G</div>
+        <p class="award-desc">Dual-entity structure: DPIIT startup for B2B service delivery + OmyEarth Trust with 80G eligibility for individual donation tax benefits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PARTNER LOGOS STRIP
+═══════════════════════════════════════════ -->
+<section class="partners" aria-label="Partners and associates">
+  <div class="container">
+    <h3>Our Partners & Associates</h3>
+    <div class="partners-row">
+      <span class="partner-badge">🔬 KFRI Kerala</span>
+      <span class="partner-badge">🚀 KSUM</span>
+      <span class="partner-badge">🏛️ Startup India · DPIIT</span>
+      <span class="partner-badge">👩‍🌾 Kudumbasree SHG</span>
+      <span class="partner-badge">🌿 Kerala Forest Dept.</span>
+      <span class="partner-badge">📊 IPCC Tier-2 Protocol</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDERS
+═══════════════════════════════════════════ -->
+<section class="founders" id="founders" aria-labelledby="founders-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Team</div>
+      <h2 class="section-title" id="founders-title">Built by practitioners, not just planters</h2>
+      <p class="section-sub">OmyEarth was founded with a conviction that environmental impact must be measurable, not just meaningful.</p>
+    </div>
+    <div class="founders-grid">
+      <div class="founder-card reveal">
+        <div class="founder-avatar" aria-hidden="true">SK</div>
+        <div>
+          <div class="founder-name">Sandeep Kumar</div>
+          <div class="founder-role">Co-Founder & CEO</div>
+          <p class="founder-bio">Mechanical engineer and former software QA leader with experience in agile systems and tech-driven process design. Sandeep brings a rigorous, data-backed approach to what the plantation industry has treated as guesswork.</p>
+        </div>
+      </div>
+      <div class="founder-card reveal">
+        <div class="founder-avatar" aria-hidden="true">PJ</div>
+        <div>
+          <div class="founder-name">Paul Jacob</div>
+          <div class="founder-role">Co-Founder</div>
+          <p class="founder-bio">Kerala-based co-founder with deep roots in community mobilisation and ground-level operations. Paul leads Kudumbasree network integration and land partnership development across the state.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Questions Answered</div>
+      <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-grid" role="list">
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq1">
+          Why does a tree adoption cost ₹150 when a sapling costs ₹40–80?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq1" role="region">
+          <p>The ₹150 covers sapling, planting labour, and initial setup. But the real investment is the 5-year maintenance: watering contracts, organic manuring (10 applications over 5 years), bi-annual girth inspections, and carbon reporting. The lifecycle cost per tree is ~₹750–800. Your ₹150 is your share of a long-term commitment, not a one-time transaction.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq2">
+          Can my company claim CSR credit for partnering with OmyEarth?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq2" role="region">
+          <p>OmyEarth operates a dual-entity model. The DPIIT-registered startup delivers B2B sustainability services (verified plantation, carbon reporting, ESG documentation) — these are service fees, not CSR receipts. For donations with 80G tax benefit, the OmyEarth Trust handles that structure. Our team will guide your CSR and legal teams through the correct engagement path.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq3">
+          How do I know my tree is actually alive?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq3" role="region">
+          <p>Every tree is GPS geo-tagged at planting. Every 6 months, a trained field inspector physically visits, measures the Girth at Breast Height (GBH), photographs the tree, and updates our database. You receive a bi-annual report with exact coordinates, live GBH measurement, and a survival confirmation. If a tree doesn't survive, we report it honestly — and replace it under our care cycle protocols.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq4">
+          What species does OmyEarth plant?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq4" role="region">
+          <p>We plant only native species selected in collaboration with KFRI (Kerala Forest Research Institute) based on site-specific soil type, microclimate, and biodiversity needs. This means trees that belong in Kerala's ecosystem — with significantly higher survival rates than exotics. Common selections include Teak, Mahogany, Indian Rosewood, Neem, Mango, Jackfruit, and other endemic species.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq5">
+          How is the carbon sequestration calculated?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq5" role="region">
+          <p>We use the IPCC Tier-2 methodology, the international standard for tropical mixed forest carbon calculations. The input variable is Girth at Breast Height (GBH), measured bi-annually by certified field inspectors. GBH feeds the allometric biomass equation for the species, producing a scientifically defensible estimate of CO₂ sequestered per tree. Output: a per-tree, per-year CO₂ figure that can be verified and audited.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq6">
+          Who actually does the planting and maintenance?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq6" role="region">
+          <p>Ground execution is carried out by Kudumbasree women's self-help groups (SHGs) — Kerala's established community network with over 4 million members. This approach creates direct, dignified livelihood for women at the grassroots level, embeds the plantation in the local community (improving long-term survival), and eliminates the fly-in-fly-out model that dooms most drives.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq7">
+          Where are the trees planted?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq7" role="region">
+          <p>We plant on voluntary private land (landowners who grant 5-year planting access agreements), degraded community lands, and government-approved locations in Kerala. All sites are assessed for accessibility (for bi-annual inspections), soil quality, water availability, and biodiversity value before a single tree is ordered.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq8">
+          Is OmyEarth an NGO or a company?
+          <span class="faq-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-a" id="faq8" role="region">
+          <p>OmyEarth operates a dual-entity model. The DPIIT-registered startup (private limited) handles B2B corporate sustainability services and earns service revenue. The OmyEarth Trust (separate entity) holds 80G status for individuals seeking tax-deductible donations. This structure ensures we can serve both corporate ESG partners and individual donors with the right legal framework for each.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     NEWSLETTER
+═══════════════════════════════════════════ -->
+<section class="newsletter" aria-labelledby="nl-title">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-copy">
+        <h3 id="nl-title">Stay connected to every tree we plant.</h3>
+        <p>Quarterly impact reports, species spotlights, and ground updates — no spam, just roots.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <label for="nl-email" class="sr-only">Your email address</label>
+        <input type="email" id="nl-email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo-text">
+            <span class="omy">Omy</span><span class="earth">Earth</span>
+          </div>
+          <p class="footer-tagline">
+            My Earth. Our Responsibility.<br>
+            Tech-monitored native tree plantation with GPS geo-tagging, bi-annual inspections, and IPCC Tier-2 verified carbon impact. Kerala, India.
+          </p>
+          <a href="https://wa.me/91" class="footer-wa" aria-label="Contact via WhatsApp">
+            💬 WhatsApp Us
+          </a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="#about">Our Mission</a>
+          <a href="#founders">Our Team</a>
+          <a href="#timeline">Our Journey</a>
+          <a href="#awards">Recognition</a>
+          <a href="#partners">Partners</a>
+        </div>
+        <div class="footer-col">
+          <h4>Participate</h4>
+          <a href="#pricing">Adopt a Tree — ₹150</a>
+          <a href="#pricing">Annual Care — ₹1,500/yr</a>
+          <a href="mailto:contact@omyearth.org">Corporate CSR</a>
+          <a href="mailto:contact@omyearth.org">Volunteer</a>
+          <a href="mailto:contact@omyearth.org">Donate Land</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@omyearth.org">contact@omyearth.org</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:contact@omyearth.org">Media Enquiries</a>
+          <div class="footer-social" style="margin-top: 1rem;">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">yt</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2025 OmyEarth. DPIIT Registered Startup · Kerala, India.</span>
+      <div class="footer-bottom-links">
+        <a href="mailto:contact@omyearth.org">Privacy</a>
+        <a href="mailto:contact@omyearth.org">Terms</a>
+        <a href="mailto:contact@omyearth.org">Impact Reports</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-</main>
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/91" class="float-wa" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">💬</a>
 
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
 <script>
-  // ── Fix 14: Scroll reveal with auto-disconnect ──
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const mobileClose = document.getElementById('mobileClose');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    mobileOverlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileOverlay.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
-  let revealed = 0;
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => {
-          e.target.classList.add('visible');
-          revealObserver.unobserve(e.target);
-          revealed++;
-          if (revealed === revealEls.length) revealObserver.disconnect();
-        }, i * 80);
-      }
-    });
-  }, { threshold: 0.1 });
+  const revealObserver = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } }),
+    { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+  );
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // ── Fix 12: Pause animations when off-screen ──
-  const animatedEls = document.querySelectorAll('.tree-circle, .globe-ring, .stat-bubble, .marquee-inner');
-  const animObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      e.target.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-q').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        document.getElementById(b.getAttribute('aria-controls'))?.classList.remove('open');
+      });
+      if (!expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        document.getElementById(btn.getAttribute('aria-controls'))?.classList.add('open');
+      }
     });
-  }, { threshold: 0 });
-  animatedEls.forEach(el => animObserver.observe(el));
+  });
 
-  // ── Fix 1: Hamburger mobile nav toggle ──
-  const hamburger = document.querySelector('.nav-hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-  // Close mobile nav when a link is clicked
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+  // Newsletter handler
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('nl-email').value;
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = '#5BA32E';
+    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; }, 3000);
+  }
+
+  // Smooth scroll for anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
-  });
-  // Close mobile nav on outside click
-  document.addEventListener('click', (e) => {
-    if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
   });
 </script>
 
