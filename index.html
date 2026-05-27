@@ -73,8 +73,8 @@
         <li class="nav-item">
           <a href="mailto:contact@omyearth.org" class="nav-link">Get Involved <span class="chevron" aria-hidden="true">▾</span></a>
           <div class="dropdown"><div class="dropdown-inner">
-            <a href="mailto:contact@omyearth.org?subject=Tree Adoption">Adopt a Tree</a>
-            <a href="mailto:contact@omyearth.org?subject=Corporate CSR">Corporate CSR</a>
+            <a href="#" onclick="openForm('individual');return false;">Adopt a Tree</a>
+            <a href="#" onclick="openForm('corporate');return false;">Corporate CSR</a>
             <a href="mailto:contact@omyearth.org?subject=Volunteer">Volunteer</a>
           </div></div>
         </li>
@@ -85,8 +85,8 @@
 
       <!-- Desktop CTA Buttons -->
       <div class="nav-actions">
-        <a href="mailto:contact@omyearth.org?subject=Tree Adoption" class="btn-nav-ghost">Adopt a Tree</a>
-        <a href="mailto:contact@omyearth.org" class="btn-nav-primary">Partner With Us</a>
+        <button onclick="openForm('individual')" class="btn-nav-ghost">Adopt a Tree</button>
+        <button onclick="openForm('corporate')" class="btn-nav-primary">Partner With Us</button>
       </div>
 
       <!-- Hamburger -->
@@ -111,7 +111,7 @@
     <a href="#faq">FAQ</a>
     <a href="mailto:contact@omyearth.org">Contact Us</a>
   </nav>
-  <a href="mailto:contact@omyearth.org?subject=Tree Adoption" class="mobile-menu-cta">🌱 Adopt a Tree Today</a>
+  <button onclick="openForm('individual')" class="mobile-menu-cta">🌱 Adopt a Tree Today</button>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -157,8 +157,8 @@
           OmyEarth plants GPS geo-tagged native trees with 5-year maintenance cycles and IPCC Tier-2 carbon tracking — because planting is easy; making trees survive is the real work.
         </p>
         <div class="hero-ctas">
-          <a href="mailto:contact@omyearth.org?subject=Tree Adoption" class="btn-hero-primary">🌱 Adopt a Tree</a>
-          <a href="mailto:contact@omyearth.org" class="btn-hero-ghost">Corporate CSR →</a>
+          <button onclick="openForm('individual')" class="btn-hero-primary">🌱 Adopt a Tree</button>
+          <button onclick="openForm('corporate')" class="btn-hero-ghost">Corporate CSR →</button>
         </div>
         <div class="hero-proof" role="list" aria-label="Credentials">
           <span class="proof-pill" role="listitem">📍 GPS Geo-Tagged</span>
@@ -659,9 +659,9 @@
         </div>
         <div class="footer-col">
           <h4>Participate</h4>
-          <a href="mailto:contact@omyearth.org?subject=Tree Adoption">Adopt a Tree</a>
-          <a href="mailto:contact@omyearth.org?subject=Annual Care">Annual Care Pledge</a>
-          <a href="mailto:contact@omyearth.org">Corporate CSR</a>
+          <a href="#" onclick="openForm('individual');return false;">Adopt a Tree</a>
+          <a href="#" onclick="openForm('individual');return false;">Annual Care Pledge</a>
+          <a href="#" onclick="openForm('corporate');return false;">Corporate CSR</a>
           <a href="mailto:contact@omyearth.org">Volunteer</a>
           <a href="mailto:contact@omyearth.org">Donate Land</a>
         </div>
@@ -772,7 +772,194 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // ── Modal form system ──────────────────────────────────────────
+  function openForm(type) {
+    const modal = document.getElementById('modal-' + type);
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // focus first input
+    setTimeout(() => { modal.querySelector('input:not([type=hidden])').focus(); }, 100);
+  }
+  function closeForm(type) {
+    const modal = document.getElementById('modal-' + type);
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeForm(overlay.id.replace('modal-',''));
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeForm(m.id.replace('modal-','')));
+    }
+  });
+
+  // ── Form submission via Web3Forms ─────────────────────────────
+  async function submitForm(formId, errorId, submitId, successId) {
+    const form = document.getElementById(formId);
+    const errorEl = document.getElementById(errorId);
+    const submitBtn = document.getElementById(submitId);
+    const successEl = document.getElementById(successId);
+
+    // Validate required fields
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      field.classList.remove('field-error');
+      if (!field.value.trim()) { field.classList.add('field-error'); valid = false; }
+    });
+    if (!valid) { errorEl.textContent = 'Please fill in all required fields.'; return; }
+    errorEl.textContent = '';
+
+    // Show loading state
+    submitBtn.querySelector('.submit-text').hidden = true;
+    submitBtn.querySelector('.submit-loading').hidden = false;
+    submitBtn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      const json = await res.json();
+      if (json.success) {
+        form.hidden = true;
+        successEl.hidden = false;
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    } catch (err) {
+      errorEl.textContent = 'Something went wrong. Please email us at contact@omyearth.org';
+      submitBtn.querySelector('.submit-text').hidden = false;
+      submitBtn.querySelector('.submit-loading').hidden = true;
+      submitBtn.disabled = false;
+    }
+  }
+
+  document.getElementById('form-individual').addEventListener('submit', e => {
+    e.preventDefault(); submitForm('form-individual','ind-error','ind-submit','ind-success');
+  });
+  document.getElementById('form-corporate').addEventListener('submit', e => {
+    e.preventDefault(); submitForm('form-corporate','corp-error','corp-submit','corp-success');
+  });
 </script>
+
+<!-- ═══════════════════════════════════════════
+     MODAL — INDIVIDUAL / ADOPT A TREE
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-individual" role="dialog" aria-modal="true" aria-labelledby="modal-ind-title" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeForm('individual')" aria-label="Close">✕</button>
+    <div class="modal-icon">🌱</div>
+    <h2 class="modal-title" id="modal-ind-title">Adopt a Tree</h2>
+    <p class="modal-sub">Fill in your details and we'll get in touch to complete your adoption and share your tree's GPS coordinates.</p>
+    <form class="contact-form" id="form-individual" novalidate>
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="New Tree Adoption — OmyEarth">
+      <input type="hidden" name="from_name" value="OmyEarth Website">
+      <input type="checkbox" name="botcheck" style="display:none">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ind-name">Full Name <span class="req">*</span></label>
+          <input type="text" id="ind-name" name="Full Name" placeholder="Your full name" required autocomplete="name">
+        </div>
+      </div>
+      <div class="form-row form-row--two">
+        <div class="form-field">
+          <label for="ind-email">Email <span class="req">*</span></label>
+          <input type="email" id="ind-email" name="Email" placeholder="you@email.com" required autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label for="ind-whatsapp">WhatsApp Number <span class="req">*</span></label>
+          <input type="tel" id="ind-whatsapp" name="WhatsApp" placeholder="+91 98765 43210" required autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ind-org">Organisation <span class="opt">(optional)</span></label>
+          <input type="text" id="ind-org" name="Organisation" placeholder="Company or institution, if any" autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ind-msg">Message <span class="opt">(optional)</span></label>
+          <textarea id="ind-msg" name="Message" rows="3" placeholder="Any specific requests, species preference, or questions?"></textarea>
+        </div>
+      </div>
+      <div class="form-error" id="ind-error" role="alert"></div>
+      <button type="submit" class="form-submit" id="ind-submit">
+        <span class="submit-text">🌱 Submit Adoption Request</span>
+        <span class="submit-loading" hidden>Sending…</span>
+      </button>
+    </form>
+    <div class="form-success" id="ind-success" hidden>
+      <div class="success-icon">✅</div>
+      <h3>Thank you! We'll be in touch soon.</h3>
+      <p>Our team will contact you within 1–2 working days to complete your adoption and share the GPS coordinates of your tree.</p>
+      <button onclick="closeForm('individual')" class="btn-card-primary" style="margin-top:1rem;display:block;text-align:center;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MODAL — CORPORATE CSR
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-corporate" role="dialog" aria-modal="true" aria-labelledby="modal-corp-title" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeForm('corporate')" aria-label="Close">✕</button>
+    <div class="modal-icon">🏢</div>
+    <h2 class="modal-title" id="modal-corp-title">Corporate CSR Partnership</h2>
+    <p class="modal-sub">Tell us about your organisation's sustainability goals. We'll prepare a custom proposal with verified carbon impact data for your ESG report.</p>
+    <form class="contact-form" id="form-corporate" novalidate>
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="Corporate CSR Enquiry — OmyEarth">
+      <input type="hidden" name="from_name" value="OmyEarth Website">
+      <input type="checkbox" name="botcheck" style="display:none">
+      <div class="form-row form-row--two">
+        <div class="form-field">
+          <label for="corp-name">Full Name <span class="req">*</span></label>
+          <input type="text" id="corp-name" name="Full Name" placeholder="Your full name" required autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label for="corp-org">Organisation <span class="req">*</span></label>
+          <input type="text" id="corp-org" name="Organisation" placeholder="Company name" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-row form-row--two">
+        <div class="form-field">
+          <label for="corp-email">Work Email <span class="req">*</span></label>
+          <input type="email" id="corp-email" name="Email" placeholder="you@company.com" required autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label for="corp-whatsapp">WhatsApp Number <span class="req">*</span></label>
+          <input type="tel" id="corp-whatsapp" name="WhatsApp" placeholder="+91 98765 43210" required autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="corp-msg">Your sustainability goals <span class="req">*</span></label>
+          <textarea id="corp-msg" name="Message" rows="4" placeholder="e.g. Offset 50 tonnes CO₂ annually, plant 500 trees for our green initiative…" required></textarea>
+        </div>
+      </div>
+      <div class="form-error" id="corp-error" role="alert"></div>
+      <button type="submit" class="form-submit" id="corp-submit">
+        <span class="submit-text">🤝 Request a Proposal</span>
+        <span class="submit-loading" hidden>Sending…</span>
+      </button>
+    </form>
+    <div class="form-success" id="corp-success" hidden>
+      <div class="success-icon">✅</div>
+      <h3>Received. We'll prepare your proposal.</h3>
+      <p>Our team will reach out within 1–2 working days with a custom CSR proposal including verified carbon impact projections and programme scope.</p>
+      <button onclick="closeForm('corporate')" class="btn-card-primary" style="margin-top:1rem;display:block;text-align:center;">Close</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

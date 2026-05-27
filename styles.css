@@ -750,3 +750,127 @@ footer { background: var(--ink); color: rgba(255,255,255,0.65); }
   .cost-breakdown { grid-template-columns: 1fr 1fr; }
   .hero h1 { font-size: 2.2rem; }
 }
+
+/* ── Modal Overlay ─────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(13, 30, 8, 0.65);
+  backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: white;
+  border-radius: var(--r-xl);
+  padding: 2.5rem;
+  width: 100%; max-width: 560px;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(13,30,8,0.25);
+  animation: modalIn 0.3s var(--ease);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--cream); border: none;
+  font-size: 0.9rem; color: var(--gray);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.modal-close:hover { background: var(--border); color: var(--ink); }
+
+.modal-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 0.5rem;
+}
+.modal-sub {
+  font-size: 0.87rem; color: var(--gray);
+  line-height: 1.6; margin-bottom: 1.75rem;
+}
+
+/* ── Contact Form ──────────────────────────────────────────────── */
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+.form-row { display: flex; flex-direction: column; gap: 1rem; }
+.form-row--two { flex-direction: row; gap: 1rem; }
+.form-row--two .form-field { flex: 1; }
+
+.form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-field label {
+  font-size: 0.82rem; font-weight: 600; color: var(--ink);
+}
+.form-field .req { color: var(--soil); }
+.form-field .opt { font-weight: 400; color: var(--gray-light); }
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(42,94,16,0.1);
+}
+.form-field input.field-error,
+.form-field textarea.field-error {
+  border-color: #C0392B;
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--gray-light); }
+
+.form-error {
+  font-size: 0.82rem; color: #C0392B;
+  min-height: 1rem; font-weight: 500;
+}
+
+.form-submit {
+  width: 100%;
+  background: var(--forest); color: white;
+  font-family: var(--font-body);
+  font-size: 0.95rem; font-weight: 700;
+  padding: 0.9rem 1.5rem; border-radius: 8px;
+  border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover:not(:disabled) { background: var(--deep); transform: translateY(-1px); }
+.form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Success State ─────────────────────────────────────────────── */
+.form-success {
+  text-align: center; padding: 1.5rem 0;
+}
+.success-icon { font-size: 3rem; margin-bottom: 1rem; }
+.form-success h3 {
+  font-family: var(--font-display); font-size: 1.5rem;
+  color: var(--forest); margin-bottom: 0.5rem;
+}
+.form-success p { font-size: 0.87rem; color: var(--gray); line-height: 1.7; }
+
+/* ── Responsive modal ──────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .modal-box { padding: 1.75rem 1.25rem; }
+  .form-row--two { flex-direction: column; }
+  .modal-title { font-size: 1.4rem; }
+}
