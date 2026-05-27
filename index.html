@@ -56,27 +56,27 @@
       <ul class="nav-links" role="list">
         <li class="nav-item">
           <a href="#about" class="nav-link">About <span class="chevron" aria-hidden="true">▾</span></a>
-          <div class="dropdown">
+          <div class="dropdown"><div class="dropdown-inner">
             <a href="#about">Our Story</a>
             <a href="#awards">Recognition</a>
             <a href="#partners">Partners</a>
-          </div>
+          </div></div>
         </li>
         <li class="nav-item">
           <a href="#how" class="nav-link">How It Works <span class="chevron" aria-hidden="true">▾</span></a>
-          <div class="dropdown">
+          <div class="dropdown"><div class="dropdown-inner">
             <a href="#how">The 4-Step Process</a>
             <a href="#verif">Verification System</a>
             <a href="#verif">Carbon Tracking</a>
-          </div>
+          </div></div>
         </li>
         <li class="nav-item">
           <a href="mailto:contact@omyearth.org" class="nav-link">Get Involved <span class="chevron" aria-hidden="true">▾</span></a>
-          <div class="dropdown">
+          <div class="dropdown"><div class="dropdown-inner">
             <a href="mailto:contact@omyearth.org?subject=Tree Adoption">Adopt a Tree</a>
             <a href="mailto:contact@omyearth.org?subject=Corporate CSR">Corporate CSR</a>
             <a href="mailto:contact@omyearth.org?subject=Volunteer">Volunteer</a>
-          </div>
+          </div></div>
         </li>
         <li class="nav-item">
           <a href="#faq" class="nav-link">FAQ</a>
@@ -216,7 +216,32 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     THE REAL PROBLEM
+     PHOTO STRIP
+═══════════════════════════════════════════ -->
+<section class="photo-strip" aria-label="Our work in the field">
+  <div class="photo-strip-grid">
+    <div class="photo-cell">
+      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80&auto=format&fit=crop" alt="Dense forest canopy — the result of sustained care" loading="lazy">
+      <div class="photo-caption">Sustained canopy</div>
+    </div>
+    <div class="photo-cell photo-cell--tall">
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80&auto=format&fit=crop" alt="Hands planting a young sapling in the soil" loading="lazy">
+      <div class="photo-caption">Planting day</div>
+    </div>
+    <div class="photo-cell">
+      <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80&auto=format&fit=crop" alt="Field team inspecting tree growth in Kerala" loading="lazy">
+      <div class="photo-caption">Field inspection</div>
+    </div>
+    <div class="photo-cell photo-cell--tall">
+      <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80&auto=format&fit=crop" alt="Sunlight through young native tree plantation" loading="lazy">
+      <div class="photo-caption">Native species, thriving</div>
+    </div>
+    <div class="photo-cell">
+      <img src="https://images.unsplash.com/photo-1576502200916-3808e07386a5?w=600&q=80&auto=format&fit=crop" alt="Community women involved in tree care programme" loading="lazy">
+      <div class="photo-caption">Community care network</div>
+    </div>
+  </div>
+</section>
 ═══════════════════════════════════════════ -->
 <section class="problem" aria-labelledby="problem-title">
   <div class="container">
@@ -300,6 +325,21 @@
         <div class="step-icon">📋</div>
         <div class="step-title">Verified Impact Reports</div>
         <p class="step-desc">Donors and corporate partners receive periodic impact reports with per-tree survival status, carbon metrics, and geotagged photo evidence. No greenwashing. Just numbers.</p>
+      </div>
+    </div>
+    <!-- Field photo row -->
+    <div class="how-photos reveal">
+      <div class="how-photo-item">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80&auto=format&fit=crop" alt="GPS tagging a newly planted tree in Kerala" loading="lazy">
+        <span>GPS tagging at planting</span>
+      </div>
+      <div class="how-photo-item">
+        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=500&q=80&auto=format&fit=crop" alt="Healthy native trees growing in a plantation" loading="lazy">
+        <span>5-year survival — verified</span>
+      </div>
+      <div class="how-photo-item">
+        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=500&q=80&auto=format&fit=crop" alt="Field data collection for tree monitoring" loading="lazy">
+        <span>Bi-annual field inspection</span>
       </div>
     </div>
   </div>
@@ -461,8 +501,8 @@
       </div>
       <div class="award-card reveal">
         <div class="award-icon">📜</div>
-        <div class="award-name">OmyEarth Trust — 80G</div>
-        <p class="award-desc">Dual-entity structure: DPIIT startup for B2B service delivery + OmyEarth Trust with 80G eligibility for individual donation tax benefits.</p>
+        <div class="award-name">80G Tax Benefit Eligible</div>
+        <p class="award-desc">Donations to OmyEarth are eligible for tax deduction under Section 80G of the Indian Income Tax Act.</p>
       </div>
     </div>
   </div>
@@ -504,7 +544,7 @@
           <span class="faq-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="faq-a" id="faq2" role="region">
-          <p>OmyEarth operates a dual-entity model. The DPIIT-registered startup delivers B2B sustainability services (verified plantation, carbon reporting, ESG documentation) — these are service fees, not CSR receipts. For donations with 80G tax benefit, the OmyEarth Trust handles that structure. Our team will guide your CSR and legal teams through the correct engagement path.</p>
+          <p>OmyEarth is a registered environmental foundation focused on verified native tree plantation. We work with corporates as a sustainability service partner — providing end-to-end plantation execution, GPS-tracked monitoring, and IPCC-based carbon impact documentation for your ESG and sustainability reports. Reach out to our team to discuss your organisation's requirements.</p>
         </div>
       </div>
 
@@ -564,7 +604,7 @@
           <span class="faq-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="faq-a" id="faq8" role="region">
-          <p>OmyEarth operates a dual-entity model. The DPIIT-registered startup (private limited) handles B2B corporate sustainability services and earns service revenue. The OmyEarth Trust (separate entity) holds 80G status for individuals seeking tax-deductible donations. This structure ensures we can serve both corporate ESG partners and individual donors with the right legal framework for each.</p>
+          <p>OmyEarth is a registered environmental foundation (NGO) working to restore India's forests through tech-monitored native tree plantation. We partner with individuals, communities, and corporates who share our commitment to verified, long-term environmental impact. Donations to OmyEarth are eligible for tax benefits under applicable Indian law.</p>
         </div>
       </div>
 
